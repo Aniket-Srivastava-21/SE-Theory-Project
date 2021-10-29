@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 function CourseDashboard() {
   return (
-    <div>
+    <div className="">
       <h3 className="text-center text-white my-2 font-monospace shadow-none p-3 bg-danger ">Course Dashboard</h3>
-      <div className="row m-5 border  d-flex justify-content-between bg-light border-dark p-3">
+      <div className="row m-5 border d-sm-flex flex-wrap justify-content-between bg-light border-dark p-3">
         <div className="col-9 bg-white p-3 shadow p-3 mb-5 bg-body rounded">
           <div className="d-flex flex-column justify-content-between py-2">
             <div>
@@ -157,7 +157,7 @@ function CourseDashboard() {
                   </div>
                   <a
                     href="../../public/Assets/kinetic_Energy.pdf"
-                    href="../../"
+              
                     download
                     rel="noopener noreferrer"
                     target="_blank"
@@ -208,7 +208,7 @@ function CourseDashboard() {
               </ul>
             </div>
           </div>
-          <Link to="/TeacherFeedback">
+          <Link to="/feedback">
             <button type="button" className="btn btn-success">
               Submit Feedback
             </button>
