@@ -6,6 +6,8 @@ import {
 } from "react-router-dom";
 import StudentDashboard from './MyComponents/StudentDashboard';
 import MentorDashboard from './MyComponents/MentorDashboard';
+import MentorFeedback from './MyComponents/MentorFeedback';
+import CourseDashboard from './MyComponents/CourseDashboard';
 
 function App() {
   return (
@@ -18,6 +20,13 @@ function App() {
 
         <Route exact path='/studentdashboard'>
           <StudentDashboard />
+        </Route>
+
+        <Route exact path="/courseDashboard">
+          <CourseDashboard/>
+        </Route>
+        <Route exact path="/feedback">
+          <MentorFeedback/>
         </Route>
 
       </Switch>
