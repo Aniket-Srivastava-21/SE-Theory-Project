@@ -15,6 +15,7 @@ import { Register } from './MyComponents/Register';
 import { Footer } from './MyComponents/Footer'
 import { Header } from './MyComponents/Header'
 import { MainPage } from './MyComponents/MainPage'
+import ForgotPassword from './MyComponents/ForgotPassword';
 
 function App() {
   return (
@@ -56,6 +57,9 @@ function App() {
           <MentorFeedback/>
         </Route>
 
+        <Route exact path="/forgotpassword">
+          <ForgotPassword/>
+        </Route>
         <Route exact path="/">
           <MainPage/>
         </Route>
