@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom'
 
 export const MainPage = () => {
     return (
-        <div className="container">
-            <div id="carouselExampleIndicators" className="carousel slide pb-5" data-bs-ride="carousel">
+        <div className="">
+            <div id="carouselExampleIndicators" className="carousel slide pb-5 container-fluid" data-bs-ride="carousel">
             <div className="carousel-indicators">
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -30,6 +30,7 @@ export const MainPage = () => {
                 <span className="visually-hidden">Next</span>
             </button>
             </div>
+            <div className="container">
             <hr/>
             <p className="pt-5 text-center display-1" >EXAMS</p>
             <div className="row justify-content-center">
@@ -65,6 +66,7 @@ export const MainPage = () => {
                     <Link to="/exam" className="btn btn-primary">Go to Exam</Link>
                 </div>
                 </div>
+            </div>
             </div>
         </div>
     )

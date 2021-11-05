@@ -3,7 +3,7 @@ import React from 'react'
 export const CourseItems = () => {
     return (
         <div className="row justify-content-center">
-            <div className="h-100 col-8 px-5 py-3 border my-4 bg-light outline rounded-3">
+            <div className="h-100 col-8 px-5 py-3 border border-primary shadow my-4 bg-light rounded-3">
 
                     <p className="fs-4">Course Instructor: Intructor_Name</p>
                     <p className="fs-4">Start Date: Starting_Date</p>
@@ -15,7 +15,7 @@ export const CourseItems = () => {
                 <button className="btn btn-outline-success btn-lg w-25" type="button">Enroll</button>
                 </div>
             </div>
-            <div className="h-100 col-8 px-5 py-3 border my-4 bg-light outline rounded-3">
+            <div className="h-100 col-8 px-5 py-3 border border-primary shadow my-4 bg-light rounded-3">
 
                     <p className="fs-4">Course Instructor: Intructor_Name</p>
                     <p className="fs-4">Start Date: Starting_Date</p>
@@ -27,7 +27,7 @@ export const CourseItems = () => {
                 <button className="btn btn-outline-success btn-lg w-25" type="button">Enroll</button>
                 </div>
             </div>
-            <div className="h-100 col-8 px-5 py-3 border my-4 bg-light outline rounded-3">
+            <div className="h-100 col-8 px-5 py-3 border border-primary shadow my-4 bg-light rounded-3">
 
                     <p className="fs-4">Course Instructor: Intructor_Name</p>
                     <p className="fs-4">Start Date: Starting_Date</p>

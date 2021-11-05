@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 export const Register = () => {
     return (
-        <div className="text-center my-5 container w-25 rounded border">
+        <div className="text-center my-5 container w-25 rounded border border-dark shadow">
             <div className="form-signin p-3">
                 <form>
                     <h1 className="h3 mb-5 pt-3 fw-normal ">Register</h1>
