@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function MentorForm() {
     return (
@@ -19,19 +20,19 @@ export default function MentorForm() {
                             <label className="form-check-label" htmlFor="inlineCheckbox2">10:00-12:00</label>
                         </div>
                         <div className="col-2 form-check form-check-inline">
-                            <input className="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"/>
+                            <input className="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" />
                             <label className="form-check-label" htmlFor="inlineCheckbox3">13:00-15:00</label>
                         </div>
                         <div className="col-2 form-check form-check-inline">
-                            <input className="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"/>
+                            <input className="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" />
                             <label className="form-check-label" htmlFor="inlineCheckbox3">16:00-18:00</label>
                         </div>
                         <div className="col-2 form-check form-check-inline">
-                            <input className="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"/>
+                            <input className="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" />
                             <label className="form-check-label" htmlFor="inlineCheckbox3">18:00-20:00</label>
                         </div>
                     </div>
-                    <br/>
+                    <br />
                     <div className="row">
                         <div className="fs-4">Tuesday</div>
                         <div className="col-2 form-check form-check-inline">
@@ -43,19 +44,19 @@ export default function MentorForm() {
                             <label className="form-check-label" htmlFor="inlineCheckbox2">10:00-12:00</label>
                         </div>
                         <div className="col-2 form-check form-check-inline">
-                            <input className="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"/>
+                            <input className="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" />
                             <label className="form-check-label" htmlFor="inlineCheckbox3">13:00-15:00</label>
                         </div>
                         <div className="col-2 form-check form-check-inline">
-                            <input className="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"/>
+                            <input className="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" />
                             <label className="form-check-label" htmlFor="inlineCheckbox3">16:00-18:00</label>
                         </div>
                         <div className="col-2 form-check form-check-inline">
-                            <input className="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"/>
+                            <input className="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" />
                             <label className="form-check-label" htmlFor="inlineCheckbox3">18:00-20:00</label>
                         </div>
                     </div>
-                    <br/>
+                    <br />
                     <div className="row">
                         <div className="fs-4">Wednesday</div>
                         <div className="col-2 form-check form-check-inline">
@@ -67,19 +68,19 @@ export default function MentorForm() {
                             <label className="form-check-label" htmlFor="inlineCheckbox2">10:00-12:00</label>
                         </div>
                         <div className="col-2 form-check form-check-inline">
-                            <input className="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"/>
+                            <input className="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" />
                             <label className="form-check-label" htmlFor="inlineCheckbox3">13:00-15:00</label>
                         </div>
                         <div className="col-2 form-check form-check-inline">
-                            <input className="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"/>
+                            <input className="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" />
                             <label className="form-check-label" htmlFor="inlineCheckbox3">16:00-18:00</label>
                         </div>
                         <div className="col-2 form-check form-check-inline">
-                            <input className="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"/>
+                            <input className="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" />
                             <label className="form-check-label" htmlFor="inlineCheckbox3">18:00-20:00</label>
                         </div>
                     </div>
-                    <br/>
+                    <br />
                     <div className="row">
                         <div className="fs-4">Thursday</div>
                         <div className="col-2 form-check form-check-inline">
@@ -91,19 +92,19 @@ export default function MentorForm() {
                             <label className="form-check-label" htmlFor="inlineCheckbox2">10:00-12:00</label>
                         </div>
                         <div className="col-2 form-check form-check-inline">
-                            <input className="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"/>
+                            <input className="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" />
                             <label className="form-check-label" htmlFor="inlineCheckbox3">13:00-15:00</label>
                         </div>
                         <div className="col-2 form-check form-check-inline">
-                            <input className="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"/>
+                            <input className="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" />
                             <label className="form-check-label" htmlFor="inlineCheckbox3">16:00-18:00</label>
                         </div>
                         <div className="col-2 form-check form-check-inline">
-                            <input className="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"/>
+                            <input className="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" />
                             <label className="form-check-label" htmlFor="inlineCheckbox3">18:00-20:00</label>
                         </div>
                     </div>
-                    <br/>
+                    <br />
                     <div className="row">
                         <div className="fs-4">Friday</div>
                         <div className="col-2 form-check form-check-inline">
@@ -115,21 +116,33 @@ export default function MentorForm() {
                             <label className="form-check-label" htmlFor="inlineCheckbox2">10:00-12:00</label>
                         </div>
                         <div className="col-2 form-check form-check-inline">
-                            <input className="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"/>
+                            <input className="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" />
                             <label className="form-check-label" htmlFor="inlineCheckbox3">13:00-15:00</label>
                         </div>
                         <div className="col-2 form-check form-check-inline">
-                            <input className="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"/>
+                            <input className="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" />
                             <label className="form-check-label" htmlFor="inlineCheckbox3">16:00-18:00</label>
                         </div>
                         <div className="col-2 form-check form-check-inline">
-                            <input className="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3"/>
+                            <input className="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3" />
                             <label className="form-check-label" htmlFor="inlineCheckbox3">18:00-20:00</label>
                         </div>
                     </div>
-                    <br/>
+                    <br />
+                    <div className="row">
+                        <div className=" col-5 fs-4">Upload Course plan</div>
+                        <div className=" col-7 form-floating">
+                            <input className="form-control h-20" type="file" id="formFileMultiple" multiple />
+                        </div>
+                    </div>
+                    <div className="form-floating mb-3 row mt-4">
+                        <div className=" col-5 fs-4">Enter Course Price</div>
+                        <div className="col-7">
+                            <input type="number" className="form-control" placeholder="Price" required />
+                        </div>
+                    </div>
                     <div className="text-end">
-                        <button className="btn btn-outline-success btn-lg w-25" type="button">Submit</button>
+                        <Link to="/mentordashboard" className="btn btn-outline-success btn-lg mt-4 w-25" type="button">Submit</Link>
                     </div>
                 </div>
             </div>
