@@ -16,6 +16,7 @@ import { Footer } from './MyComponents/Footer'
 import { Header } from './MyComponents/Header'
 import { MainPage } from './MyComponents/MainPage'
 import ForgotPassword from './MyComponents/ForgotPassword';
+import MentorForm from './MyComponents/MentorForm';
 
 function App() {
   return (
@@ -60,6 +61,11 @@ function App() {
         <Route exact path="/forgotpassword">
           <ForgotPassword/>
         </Route>
+
+        <Route exact path="/mentorform">
+          <MentorForm/>
+        </Route>
+
         <Route exact path="/">
           <MainPage/>
         </Route>

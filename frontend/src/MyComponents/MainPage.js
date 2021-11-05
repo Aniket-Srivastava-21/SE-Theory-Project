@@ -37,7 +37,7 @@ export const MainPage = () => {
                 <img src="/assets/images/mains.jpg" className="card-img-top" height="300px" alt="jee-mains"/>
                 <div className="card-body">
                     <h5 className="card-title">Exam Name</h5>
-                    <p className="card-text">Breif exam description to let users know the most importants details of the exam</p>
+                    <p className="card-text">Brief exam description to let users know the most importants details of the exam</p>
                     <Link to="/exam" className="btn btn-primary">Go to Exam</Link>
                 </div>
                 </div>
@@ -45,7 +45,7 @@ export const MainPage = () => {
                 <img src="/assets/images/advanced.jpg" className="card-img-top" height="300px" alt="jee-advanced"/>
                 <div className="card-body">
                     <h5 className="card-title">Exam Name</h5>
-                    <p className="card-text">Breif exam description to let users know the most importants details of the exam</p>
+                    <p className="card-text">Brief exam description to let users know the most importants details of the exam</p>
                     <Link to="/exam" className="btn btn-primary">Go to Exam</Link>
                 </div>
                 </div>
@@ -53,7 +53,7 @@ export const MainPage = () => {
                 <img src="/assets/images/gate.jpeg" className="card-img-top" height="300px" alt="gate-exam"/>
                 <div className="card-body">
                     <h5 className="card-title">Exam Name</h5>
-                    <p className="card-text">Breif exam description to let users know the most importants details of the exam</p>
+                    <p className="card-text">Brief exam description to let users know the most importants details of the exam</p>
                     <Link to="/exam" className="btn btn-primary">Go to Exam</Link>
                 </div>
                 </div>
@@ -61,7 +61,7 @@ export const MainPage = () => {
                 <img src="/assets/images/neet.jpeg" className="card-img-top" height="300px" alt="neet-exam"/>
                 <div className="card-body">
                     <h5 className="card-title">Exam Name</h5>
-                    <p className="card-text">Breif exam description to let users know the most importants details of the exam</p>
+                    <p className="card-text">Brief exam description to let users know the most importants details of the exam</p>
                     <Link to="/exam" className="btn btn-primary">Go to Exam</Link>
                 </div>
                 </div>
