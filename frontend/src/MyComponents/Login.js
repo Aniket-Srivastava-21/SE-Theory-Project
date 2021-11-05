@@ -25,7 +25,7 @@ export const Login = () => {
                     <button className="w-50 mt-5 mb-4 btn btn-primary" type="submit">Sign in</button>
                     
                     <br />
-                    <Link to="#" className="">Forgot Password</Link>
+                    <Link to="/forgotpassword" className="">Forgot Password</Link>
                     <br />
                     <div className="row container">
                         <div className="col-10 text-end mt-2 mb-3">Dont have an account?</div>
