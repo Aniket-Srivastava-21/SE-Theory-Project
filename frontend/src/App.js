@@ -20,54 +20,40 @@ import ForgotPassword from './MyComponents/ForgotPassword';
 function App() {
   return (
     <Router>
-    
       <Header/>
-    
       <Switch>
-    
         <Route exact path="/exam">
           <ExamPage/>
         </Route>
-    
         <Route exact path="/courses">
           <CoursePage/>
         </Route>
-    
         <Route exact path="/login">
           <Login/>
         </Route>
-    
         <Route exact path="/register">
           <Register/>
-        </Route>
-    
+        </Route>   
         <Route exact path='/mentordashboard'>
           <MentorDashboard />
         </Route>
-
         <Route exact path='/studentdashboard'>
           <StudentDashboard />
         </Route>
-
         <Route exact path="/courseDashboard">
           <CourseDashboard/>
         </Route>
-    
         <Route exact path="/feedback">
           <MentorFeedback/>
         </Route>
-
         <Route exact path="/forgotpassword">
           <ForgotPassword/>
         </Route>
         <Route exact path="/">
           <MainPage/>
         </Route>
-    
       </Switch>
-    
       <Footer/>
-    
     </Router>
 
   );
