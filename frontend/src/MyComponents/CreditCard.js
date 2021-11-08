@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+// import { useEffect, useState } from "react";
+// import { useLocation } from "react-router-dom";
 
 export default function CreditCard() {
   // get the state data

@@ -11,6 +11,7 @@ export default function StudentDashboard() {
                 <div className="row">
                     <div className="col-3">
                         <StudentDetails />
+                        <br/>
                         <StudentReminders />
                     </div>
                     <div className="col-9">

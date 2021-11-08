@@ -1,6 +1,6 @@
 import {Link} from 'react-router-dom'
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+// import { useEffect, useState } from "react";
+// import { useLocation } from "react-router-dom";
 
 
 function Upi() {
@@ -8,18 +8,14 @@ function Upi() {
 /*   const location = useLocation();
   let props = location.state.data;
   location.state.method="UPI"
-
   // items state 
   let [items, setItems] = useState([]);
-
   function GetItems() {
     setItems(props);
   }
-
   useEffect(() => {
     GetItems();
   }, []);
-
   console.log("data is: ", items)
   console.log("UPI State: ", location.state)
  */

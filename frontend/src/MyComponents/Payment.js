@@ -16,10 +16,10 @@ function Payment() {
       <div className="d-flex justify-content-between">
         <Link
           className="fs-6 bg-primary text-white px-3  py-2 rounded-pill text-decoration-none"
-          to="/cart"
+          to="/courses"
         >
           <i class="bi bi-arrow-left"></i>
-          Back to cart
+          Back to Courses
         </Link>
         {/* <Link
           className="fs-6  text-white bg-success px-5 py-2 rounded-pill text-decoration-none"

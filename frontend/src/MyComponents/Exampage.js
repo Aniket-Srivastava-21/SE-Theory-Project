@@ -13,7 +13,10 @@ export const ExamPage = () => {
                 <div className="card-body">
                     <h5 className="card-title">Subject Title</h5>
                     <p className="card-text">Quick description of the subject and to let users know about the subject</p>
+                    <div className="d-flex py-2 justify-content-between">
                     <Link to="/courses" className="btn btn-primary">Go to courses</Link>
+                    <Link to="/mentorform"  className="btn btn-primary">Teach Subject</Link>
+                    </div>
                 </div>
                 </div>
                 <div className="card col-5 my-5 mx-4 px-0">
@@ -21,7 +24,10 @@ export const ExamPage = () => {
                 <div className="card-body">
                     <h5 className="card-title">Subject Title</h5>
                     <p className="card-text">Quick description of the subject and to let users know about the subject</p>
+                    <div className="d-flex py-2 justify-content-between">
                     <Link to="/courses" className="btn btn-primary">Go to courses</Link>
+                    <Link to="/mentorform"  className="btn btn-primary">Teach Subject</Link>
+                    </div>
                 </div>
                 </div>
                 <div className="card col-5 my-5 mx-4 px-0">
@@ -29,7 +35,10 @@ export const ExamPage = () => {
                 <div className="card-body">
                     <h5 className="card-title">Subject Title</h5>
                     <p className="card-text">Quick description of the subject and to let users know about the subject</p>
+                    <div className="d-flex py-2 justify-content-between">
                     <Link to="/courses" className="btn btn-primary">Go to courses</Link>
+                    <Link to="/mentorform"  className="btn btn-primary">Teach Subject</Link>
+                    </div>
                 </div>
                 </div>
             </div>

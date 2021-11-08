@@ -6,6 +6,7 @@ export const CoursePage = () => {
         <div className="container">
             <div className="text-center mt-5 display-3">Subject Name</div>
             <CourseItems/>
+            <CourseItems/>
         </div>
     )
 }

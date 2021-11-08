@@ -1,8 +1,8 @@
 import React from "react";
-import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import { Link, useHistory } from "react-router-dom";
-import Axios from "axios";
+// import { useEffect, useState } from "react";
+// import { useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
+// import Axios from "axios";
 
 function PaymentSuccess() {
  /*  const [rating, setRating] = useState("3");
@@ -10,20 +10,17 @@ function PaymentSuccess() {
   const location = useLocation();
   let history = useHistory();
   let props = location.state.data;
-
   // items state
   let [items, setItems] = useState([]);
   let [url, seturl] = useState("");
   let [firstTime, setFirstTime] = useState(true);
   let [file, setfile] = useState(false);
-
   function GetItems() {
     console.log(location.state);
     setItems(props);
     let link = "./../../../backend/public/uploads/" + location.state.order._id + ".pdf";
     seturl(link);
   }
-
   useEffect(() => {
     GetItems();
     if (firstTime) {
@@ -31,7 +28,6 @@ function PaymentSuccess() {
       orderSuccess();
     }
   }, []);
-
   function orderSuccess() {
     let url = 'http://localhost:5000/products/orderSuccess';
     Axios.post(url, {
@@ -48,10 +44,8 @@ function PaymentSuccess() {
         console.log(res);
       })
   }
-
   async function generatePDF() {
     let url = 'http://localhost:5000/products/generatePDF';
-
     await Axios.post(url, {
       order: location.state.order,
       total: location.state.total,
@@ -65,18 +59,13 @@ function PaymentSuccess() {
     })
       .then((res) => {
         history.push("/");
-
         // const file = new Blob([res.data.result.data], { type: "application/pdf" });
         // const fileURL = URL.createObjectURL(file);
         // const pdfWindow = window.open();
         // pdfWindow.location.href = fileURL;             
-
         console.log(res);
-
       })
-
   }
-
   // function viewPDF(){
   //   let url = 'http://localhost:5000/products/viewPDF?oid='+location.state.order._id;
   //   Axios.get(
@@ -90,7 +79,6 @@ function PaymentSuccess() {
   //     window.open(URL.createObjectURL(response.data));
   //   })
   // }
-
   console.log("data is: ", items);
   console.log("state is; ", location.state); */
 
@@ -105,25 +93,17 @@ function PaymentSuccess() {
           Payment Successful <i class="bi bi-check-circle"></i>
         </div>
        {/*  <div class="col p-3 mt-5">
-
-
           <div className="d-flex justify-content-between">
             <p className="text">Seller</p>
             <p className="text">{location.state.data[0].owner}</p>
           </div>
           <p className="text-secondary fw-bold">Products</p>
-
-
-
-
           {items.map(function (d) {
             return (
-
               <div className="d-flex justify-content-between">
                 <p className="text">{d.title}</p>
                 <p className="text">{d.price}</p>
               </div>
-
             );
           })}
           <div className="d-flex justify-content-between">
@@ -134,13 +114,10 @@ function PaymentSuccess() {
             <p className="text fw-bold">Discount Amount</p>
             <p className="text fw-bold">{location.state.discountTotal}</p>
           </div>) : (<></>)}
-
-
           <div className="d-flex justify-content-between">
             <p className="text">Payment Type</p>
             <p className="text">{location.state.method}</p>
           </div>
-
           <div className="d-flex justify-content-between">
             <p className="text">Transaction ID</p>
             <p className="text">{location.state.order._id}</p>
