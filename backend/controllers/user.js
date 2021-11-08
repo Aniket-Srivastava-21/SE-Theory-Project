@@ -8,10 +8,11 @@ export let registerUser = async (req,res) => {
         let username = req.body.username;
         let password = req.body.password;
         let cpassword = req.body.cpassword;
+        let role = req.body.role;
         //console.log(req.body);
 
         if(cpassword == password){
-            User.findOne({email: email}).then((user)=>{
+            User.findOne({email: email, role : role}).then((user)=>{
                 if(user){
                     return res.status(201).json({auth:false,msg:"email already exists!!"});
                 }else{
@@ -25,6 +26,7 @@ export let registerUser = async (req,res) => {
                                 email: email,
                                 username: username,
                                 name : name,
+                                role : req.body.role,
                             });
                             user.password = user.generateHash(password);
                             user.save();

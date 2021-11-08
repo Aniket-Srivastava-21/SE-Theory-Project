@@ -7,6 +7,7 @@ import cookieParser from "cookie-parser";
 import session from "express-session";
 import ejs from "ejs";
 import fileUpload from "express-fileupload";
+import authRoutes from "./routes/auth.js";
 
 dotenv.config();
 const app = express();
