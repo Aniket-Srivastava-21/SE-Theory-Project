@@ -15,7 +15,7 @@ export const ExamPage = () => {
                     <p className="card-text">Quick description of the subject and to let users know about the subject</p>
                     <div className="d-flex py-2 justify-content-between">
                     <Link to="/courses" className="btn btn-primary">Go to courses</Link>
-                    <Link to="/mentorform"  className="btn btn-primary">Teach Subject</Link>
+                    <Link to="/mentorform0"  className="btn btn-primary">Teach Subject</Link>
                     </div>
                 </div>
                 </div>
@@ -26,7 +26,7 @@ export const ExamPage = () => {
                     <p className="card-text">Quick description of the subject and to let users know about the subject</p>
                     <div className="d-flex py-2 justify-content-between">
                     <Link to="/courses" className="btn btn-primary">Go to courses</Link>
-                    <Link to="/mentorform"  className="btn btn-primary">Teach Subject</Link>
+                    <Link to="/mentorform0"  className="btn btn-primary">Teach Subject</Link>
                     </div>
                 </div>
                 </div>
@@ -37,7 +37,7 @@ export const ExamPage = () => {
                     <p className="card-text">Quick description of the subject and to let users know about the subject</p>
                     <div className="d-flex py-2 justify-content-between">
                     <Link to="/courses" className="btn btn-primary">Go to courses</Link>
-                    <Link to="/mentorform"  className="btn btn-primary">Teach Subject</Link>
+                    <Link to="/mentorform0"  className="btn btn-primary">Teach Subject</Link>
                     </div>
                 </div>
                 </div>

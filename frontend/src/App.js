@@ -23,6 +23,7 @@ import PaymentSuccess from "./MyComponents/PaymentSuccess";
 import Upi from "./MyComponents/Upi"
 import ForgotPassword from './MyComponents/ForgotPassword';
 import MentorForm from './MyComponents/MentorForm';
+import MentorForm0 from './MyComponents/MentorForm0';
 
 function App() {
   return (
@@ -59,6 +60,9 @@ function App() {
 
         <Route exact path="/mentorform">
           <MentorForm/>
+        </Route>
+        <Route exact path="/mentorform0">
+          <MentorForm0/>
         </Route>
 
         <Route exact path="/">
