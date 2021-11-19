@@ -1,26 +1,15 @@
 // import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 function PaymentOption(props) {
-  /* const location = useLocation();
-  let data = location.state;
-
-  let [items, setItems] = useState([]);
-
-  function GetItems() {
-    setItems(data);
-  }
-  useEffect(() => {
-    GetItems();
-  }, []); */
-
+   const location = useLocation();
   let src = "/" + props.goto;
   return (
     <div className="row mx-3">
       <Link
         to={{
           pathname: src,
-          // state: items,
+          state : { user : location.state.user, course : location.state.course }
         }}
       >
         <div
