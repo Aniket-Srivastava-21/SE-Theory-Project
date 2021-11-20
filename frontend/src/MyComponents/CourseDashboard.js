@@ -1,7 +1,20 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import baseUrl from "../services/Baseurl";
 
 function CourseDashboard() {
+  // accept the data passed from the link
+  let location = useLocation();
+  
+  useEffect(() => {
+    console.log(location.state);
+    getDetails();
+  }, []);
+
+  function getDetails() {
+    let url=baseUrl+"/"
+  }
+
   return (
     <div className="">
       <h3 className="text-center text-white my-2 font-monospace shadow-none p-3 bg-danger ">
@@ -194,15 +207,16 @@ function CourseDashboard() {
                       ></iframe>
                       <br />
                       <div>
-
                         <a
                           href="../../public/Assets/kinetic_Energy.pdf"
                           download
                           rel="noopener noreferrer"
                           target="_blank"
                         >
-                          <i className="bi bi-file-earmark-arrow-down-fill">  Download Material</i>
-
+                          <i className="bi bi-file-earmark-arrow-down-fill">
+                            {" "}
+                            Download Material
+                          </i>
                         </a>
                       </div>
                     </li>
@@ -252,7 +266,7 @@ function CourseDashboard() {
             </div>
           </div>
 
-          <Link to="/feedbackform">
+          <Link to={{pathname : "/feedbackform", state : location.state }} >
             <button type="button" className="btn btn-success">
               Submit Feedback
             </button>
