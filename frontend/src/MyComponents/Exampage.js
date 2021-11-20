@@ -8,6 +8,8 @@ export const ExamPage = () => {
     let [user, setUser] = useState("");
     let [courses, setCourse] = useState([]);
 
+    let token = localStorage.getItem('token');
+
     useEffect(()=>{
         setUser(location.state.user)
         if(location.state.exam === "mains"){
@@ -46,8 +48,11 @@ export const ExamPage = () => {
                     <div className="card-body">
                         <h5 className="card-title">{ course }</h5>
                         <div className="d-flex py-2 justify-content-between">
-                        { user.role === "Student" ? <Link to={{pathname : "/courses", state : { user:user, exam : location.state.exam, subject : course }}} className="btn btn-primary">Go to courses</Link> :
-                        <Link to="/mentorform"  className="btn btn-primary">Teach Subject</Link>} 
+                        { token !== null ? (user.role === "Student" ? <Link to={{pathname : "/courses", 
+                        state : { user:user, exam : location.state.exam, subject : course }}} className="btn btn-primary">Go to courses</Link> :
+                        <Link to="/mentorform"  className="btn btn-primary">Teach Subject</Link>) : (<Link to="/login"  className="btn btn-primary">Login to view details</Link>) }
+                        {/* { user.role === "Student" ? <Link to={{pathname : "/courses", state : { user:user, exam : location.state.exam, subject : course }}} className="btn btn-primary">Go to courses</Link> :
+                        <Link to="/mentorform"  className="btn btn-primary">Teach Subject</Link>}  */}
                         </div>
                     </div>
                 </div>

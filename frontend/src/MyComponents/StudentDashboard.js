@@ -7,7 +7,7 @@ import { useLocation } from 'react-router-dom';
 
 
 export default function StudentDashboard() {
-
+    let location = useLocation();
     
 
     return (
