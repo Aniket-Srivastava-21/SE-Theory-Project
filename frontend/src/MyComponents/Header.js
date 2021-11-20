@@ -27,8 +27,11 @@ export const Header = () => {
             console.log(res);
 			if(res.data.result.role === 'Student'){
 				history.push({pathname : "/studentdashboard", state : res.data.result });
+				//window.location.reload();
+				
 			}else{
 				history.push({pathname : "/mentordashboard",  state : res.data.result});
+				//window.location.reload();
 			}
             //setOrders(res.data.result);
         }) 
@@ -51,9 +54,7 @@ export const Header = () => {
 		} else {
 			return (
 				<div className="text-end">
-					<Link to="#">
 					<button type="button" className="btn btn-lg btn-outline-primary mx-3" onClick={gotoDashboard}>Profile</button>
-					</Link>
 					<button type="button" className="btn btn-lg btn-outline-primary mx-3" onClick={logout}>Logout</button>
 						
 				</div>

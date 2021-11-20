@@ -7,8 +7,10 @@ import baseUrl from '../services/Baseurl.js'
 
 export const MainPage = () => {
 
+    let token = localStorage.getItem('token');
 
     useEffect(()=>{
+        if(token !== null)
         getUserData();
     },[])
 
