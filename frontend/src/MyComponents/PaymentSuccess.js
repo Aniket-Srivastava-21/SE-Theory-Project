@@ -88,11 +88,11 @@ function PaymentSuccess() {
 
   return (
     <div className="min-height my-5">
-      <div class="card border-dark mx-auto my-5" style={mystyle}>
-        <div class="card-header fs-2 text-success text-center">
-          Payment Successful <i class="bi bi-check-circle"></i>
+      <div className="card border-dark mx-auto my-5" style={mystyle}>
+        <div className="card-header fs-2 text-success text-center">
+          Payment Successful <i className="bi bi-check-circle"></i>
         </div>
-       {/*  <div class="col p-3 mt-5">
+       {/*  <div className="col p-3 mt-5">
           <div className="d-flex justify-content-between">
             <p className="text">Seller</p>
             <p className="text">{location.state.data[0].owner}</p>
@@ -140,7 +140,7 @@ function PaymentSuccess() {
             </div>
           </div>
         </div> */}
-        <div class="col p-3 mt-5">
+        <div className="col p-3 mt-5">
           <div className="d-flex justify-content-between">
 
             <Link
@@ -149,7 +149,7 @@ function PaymentSuccess() {
               to="/"
             >
               Generate Invoice{" "}
-              <i class="bi bi-file-earmark-arrow-down-fill"></i>
+              <i className="bi bi-file-earmark-arrow-down-fill"></i>
             </Link>
 
             <Link

@@ -19,6 +19,8 @@ import PaymentSuccess from "./MyComponents/PaymentSuccess";
 import Upi from "./MyComponents/Upi";
 import ForgotPassword from "./MyComponents/ForgotPassword";
 import MentorForm from "./MyComponents/MentorForm";
+import TeacherDashboard from "./MyComponents/TeacherDashboard";
+import Feedbacks from "./MyComponents/Feedbacks";
 
 function App() {
   return (
@@ -46,8 +48,11 @@ function App() {
         <Route exact path="/courseDashboard">
           <CourseDashboard />
         </Route>
-        <Route exact path="/feedback">
+        <Route exact path="/feedbackform">
           <MentorFeedback />
+        </Route>
+        <Route exact path="/feedbacks">
+          <Feedbacks />
         </Route>
         <Route exact path="/forgotpassword">
           <ForgotPassword />
@@ -95,6 +100,9 @@ function App() {
         </Route>
         <Route exact path="/upi">
           <Upi />
+        </Route>
+        <Route exact path="/teacherDashboard">
+          <TeacherDashboard />
         </Route>
       </Switch>
       <Footer />
