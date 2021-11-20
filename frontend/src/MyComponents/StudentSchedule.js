@@ -2,9 +2,9 @@ import React from 'react'
 
 export default function StudentSchedule() {
     return (
-        <div className="container rounded mt-5 bg-dark py-3">
-            <h2 className="container row text-white mb-3">Time Table</h2>
-            <table class="table table-dark table-hover table-bordered">
+        <div className="container rounded mt-5 border bg-light border-dark py-3">
+            <h2 className="container row mb-3">Time Table</h2>
+            <table class="table border border-secondary table-hover table-bordered">
                 <thead>
                     <tr>
                         <th scope="col">Day/Time</th>
