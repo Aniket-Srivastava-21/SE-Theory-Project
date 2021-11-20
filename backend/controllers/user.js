@@ -1,5 +1,8 @@
 import User from "../model/users.js";
 import jwt from "jsonwebtoken";
+import Invoice from "../model/invoice.js";
+import Course from "../model/courses.js";
+import fs from "fs";
 
 export let registerUser = async (req,res) => {
     try {
@@ -76,5 +79,103 @@ export let loginUser = async (req,res) => {
     } catch (error) {
         console.log(error);
         res.status(404).json({auth: false});        
+    }
+}
+
+export let getRole = async (req,res)=>{
+    try {
+        let id = req.user;
+        User.findById(id, (err,user)=>{
+            if(err){
+                console.log(err);
+            }else{
+                return res.status(200).json({auth: true, result : user});
+            }
+        })        
+        
+    } catch (error) {
+        
+    }
+}
+
+export let getUserData = async (req,res)=>{
+    try {
+
+        let id = req.user;
+        User.findById(id, (err,user)=>{
+            if(err){
+                console.log(err);
+            }else{
+                if(user){
+                    return res.status(200).json({auth : true, result : user});
+                }else{
+                    return res.status(200).json({auth : false, msg : "User not found"});
+                }
+            }
+        })
+        
+    } catch (error) {
+        console.log(error);
+        
+    }
+}
+
+export let getTransactions = async (req,res) =>{
+    try {
+        let id = req.user;   
+        Invoice.find({userID : id}, (err,results) => {
+            if(err){
+                console.log(err);
+            }else{
+                return res.status(200).json({auth:true, result : results})
+            }
+        })     
+    } catch (error) {
+        console.log(error);
+        
+    }
+}
+
+export let viewPDF = async (req,res) => {
+    try {
+        let oid = req.query.oid;
+        let fn = './public/uploads/'+ oid + '.pdf';
+        var file = fs.readFileSync(fn);
+                    
+        res.header('content-type','application/pdf');
+        res.send(file);
+        
+    } catch (error) {
+        console.log(error);
+
+    }
+}
+
+export let viewCourses = async (req,res) => {
+    try {
+        let id = req.user;
+        User.findById(id,(err,user) =>{
+            if(err){
+                console.log(err);
+            }else{
+                let courses = [];
+                user.courses.forEach(ele => {
+                    courses.push(ele.CourseID);                    
+                });
+                Course.find({onSale : true}).where('_id').in(courses).exec((err, records) => {
+                    if(err){
+                        console.log(err);
+                    }else{
+                        console.log(records);
+                        return res.status(201).json({auth:true, result: records});
+                    }
+                });
+
+            }
+        })
+                
+    } catch (error) {
+        console.log(error);
+        
     }
 }

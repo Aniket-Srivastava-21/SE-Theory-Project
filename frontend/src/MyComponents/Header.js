@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link,useHistory } from "react-router-dom";
 import Axios from "axios";
+import baseUrl from "../services/Baseurl.js"
 
 
 export const Header = () => {
@@ -16,7 +17,22 @@ export const Header = () => {
 	}
 
     function gotoDashboard(){
-               
+		let url = baseUrl + 'profile/getRole'
+        Axios.get(url, {
+            headers: {
+                "x-access-token": localStorage.getItem("token"),
+            }
+        })
+        .then((res)=>{
+            console.log(res);
+			if(res.data.result.role === 'Student'){
+				history.push({pathname : "/studentdashboard", state : res.data.result });
+			}else{
+				history.push({pathname : "/mentordashboard",  state : res.data.result});
+			}
+            //setOrders(res.data.result);
+        }) 
+
     }
 
 	function CheckLogin(){

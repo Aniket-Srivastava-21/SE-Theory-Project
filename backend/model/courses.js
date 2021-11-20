@@ -5,7 +5,7 @@ const courseSchema = mongoose.Schema({
     subject : String,
     mentor : String,
     desc : String,
-    coursePlan : File,
+    coursePlan : String,
     studentList : Array,
     Fees : Number,
     slots : {
