@@ -19,7 +19,7 @@ function MentorFeedback() {
     // prevent the default action
     e.preventDefault();
     let req = {
-      username: location.state.user.name,
+      username: localStorage.getItem("name"),
       rating: rating,
       feedback: feedback,
       id:location.state.course._id
@@ -37,7 +37,7 @@ function MentorFeedback() {
       .then((res) => {
         console.log(res);
         console.log("feedback added");
-        history.push("/coursedashboard");
+        history.push("/");
       })
       .catch((err) => console.error(err));
 

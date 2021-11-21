@@ -11,7 +11,8 @@ export const Header = () => {
 
 
 	function logout(){
-		localStorage.removeItem("token");
+		// localStorage.removeItem("token");
+		localStorage.clear();
 		history.push("/login");
 		window.location.reload();
 	}

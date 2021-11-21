@@ -20,7 +20,9 @@ function CourseDashboard() {
     let url = baseUrl + "/";
     setCurriculum(location.state.course.Curriculum);
     setResources(location.state.course.Resources);
-    let username = location.state.user.name;
+    let username = localStorage.getItem("name");
+    // username
+    console.log(username)
 
     if (location.state.course.Feedback.length === 0)
       setFilledFeedback(false)
