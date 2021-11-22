@@ -22,8 +22,16 @@ import MentorForm from './MyComponents/MentorForm';
 import MentorForm0 from './MyComponents/MentorForm0';
 import TeacherDashboard from "./MyComponents/TeacherDashboard";
 import Feedbacks from "./MyComponents/Feedbacks";
+import { useState } from "react";
+
+
 
 function App() {
+
+  const [isAuthenticated, setAuthenticated] = useState(() => {
+    const token = localStorage.getItem("token");
+    return token !== null;
+    });
   return (
     <Router>
       <Header />
@@ -41,24 +49,24 @@ function App() {
           <Register />
         </Route>
         <Route exact path="/mentordashboard">
-          <MentorDashboard />
+        { isAuthenticated ? <MentorDashboard /> : <Login/> }
+          
         </Route>
         <Route exact path="/studentdashboard">
-          <StudentDashboard />
+          { isAuthenticated ? <StudentDashboard /> : <Login/> }
         </Route>
         <Route exact path="/courseDashboard">
-          <CourseDashboard />
+        { isAuthenticated ? <CourseDashboard /> : <Login/> }
         </Route>
         <Route exact path="/feedbackform">
-          <MentorFeedback />
+        { isAuthenticated ? <MentorFeedback /> : <Login/> } 
         </Route>
         <Route exact path="/feedbacks">
-          <Feedbacks />
+        { isAuthenticated ? <Feedbacks /> : <Login/> } 
         </Route>
         <Route exact path="/forgotpassword">
           <ForgotPassword />
         </Route>
-
         <Route exact path="/mentorform">
           <MentorForm />
         </Route>
@@ -70,43 +78,29 @@ function App() {
           <MainPage />
         </Route>
         <Route exact path="/payment">
-          <Payment />
+        { isAuthenticated ? <Payment /> : <Login/> } 
         </Route>
         <Route exact path="/debitcard">
-          <DebitCard />
+        { isAuthenticated ?<DebitCard /> : <Login/> } 
         </Route>
         <Route exact path="/creditcard">
-          <CreditCard />
+        { isAuthenticated ? <CreditCard /> : <Login/> } 
+         
         </Route>
         <Route exact path="/paymentsuccess">
-          <PaymentSuccess />
+        { isAuthenticated ?  <PaymentSuccess /> : <Login/> } 
+         
         </Route>
         <Route exact path="/internetbanking">
-          <InternetBanking />
+        { isAuthenticated ?  <InternetBanking />: <Login/> } 
+         
         </Route>
         <Route exact path="/upi">
-          <Upi />
-        </Route>
-        <Route exact path="/payment">
-          <Payment />
-        </Route>
-        <Route exact path="/debitcard">
-          <DebitCard />
-        </Route>
-        <Route exact path="/creditcard">
-          <CreditCard />
-        </Route>
-        <Route exact path="/paymentsuccess">
-          <PaymentSuccess />
-        </Route>
-        <Route exact path="/internetbanking">
-          <InternetBanking />
-        </Route>
-        <Route exact path="/upi">
-          <Upi />
+        { isAuthenticated ?   <Upi /> : <Login/> } 
         </Route>
         <Route exact path="/teacherDashboard">
-          <TeacherDashboard />
+        { isAuthenticated ?  <TeacherDashboard /> : <Login/> } 
+          
         </Route>
       </Switch>
       <Footer />
