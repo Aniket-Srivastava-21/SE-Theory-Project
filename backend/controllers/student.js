@@ -1,14 +1,13 @@
 import Course from "../model/courses.js";
 
-export let addResources = async (req, res) => {
+export let addFeedback = async (req, res) => {
   try {
     console.log("req is: ", req);
-
     // add the feedback
     Course.findById({ _id: req.body.id }, (err, course) => {
       if (err) {
         console.error(err);
-        res.send("couldn't inser the data ")
+        res.send("couldn't insert the data ")
       } else {
         let newFeedback = {
           user: req.body.username,
@@ -24,20 +23,17 @@ export let addResources = async (req, res) => {
         });
       }
     });
-
-    // send the response
   } catch (error) {
     console.log(error);
   }
 };
 
 // get feedback
-
 export let getFeedback = async (req, res) => {
     try {
         let subject = req.query.sub;
         let exam = req.query.exam;
-        Course.findOne({course}, (err,course)=>{
+        Course.findOne({ _id: req.body.id }, (err, course)=>{
             if(err){
                 console.log(err);
             }else{
@@ -47,10 +43,8 @@ export let getFeedback = async (req, res) => {
                     return res.status(200).json({ auth: false, msg : "No course exist" })
                 }
             }
-        })
-        
-        
+        })  
     } catch (error) {
         console.log(error);        
     }
-  };
+};
