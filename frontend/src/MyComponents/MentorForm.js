@@ -392,18 +392,6 @@ export default function MentorForm() {
                         </div>
                     </div>
                     <br />
-                    <div className="row">
-                        <div className=" col-5 fs-4">Upload Course plan</div>
-                        <div className=" col-7 form-floating">
-                            <input className="form-control h-20" type="file" id="formFileMultiple" multiple />
-                        </div>
-                    </div>
-                    <div className="form-floating mb-3 row mt-4">
-                        <div className=" col-5 fs-4">Enter Course Price</div>
-                        <div className="col-7">
-                            <input type="number" className="form-control" placeholder="Price" required />
-                        </div>
-                    </div>
                     <div className="text-end">
                     <button className="btn btn-outline-success btn-lg mt-4 w-25" type="submit">Submit</button>
                     </div>

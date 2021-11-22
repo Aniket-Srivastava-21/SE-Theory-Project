@@ -1,8 +1,68 @@
-import React from "react"
+import React, { useState } from "react"
 import { Link } from "react-router-dom"
+import axios from "axios";
+import baseUrl from '../services/Baseurl'
 import FeedbackCard from "./FeedbackCard"
 
 function TeacherDashboard() {
+    // Add resource backend code
+    let [title, setTitle] = useState("")
+    let [resource, setResource] = useState("")
+    let [reference, setReference] = useState("")
+    let [unit, setUnit] = useState("")
+    let [weightes, setWeightes] = useState("")
+    let [topics, setTopics] = useState("")
+
+
+    // file upload remaining
+    function AddResource(e) {
+        // prevent the default action
+        e.preventDefault();
+        // req body
+        let req = {
+            title: title,
+            reference: reference,
+            resource: reference
+        };
+        console.log(req);
+
+        // post request to the server
+        let url = baseUrl + 'mentor/AddResources'
+        axios
+            .post(url, req,
+                {
+                    headers: {
+                        "x-access-token": localStorage.getItem("token"),
+                    }
+                })
+            .then((res) => {
+                console.log(res);
+                console.log("Resources added");
+                // history.push("/discuss");
+            })
+            .catch((err) => console.error(err));
+
+        //   clear the title and resource and reference values
+        setTitle("");
+        setReference("")
+        setResource("")
+    }
+
+    // function addTopics
+    function addTopics(e) {
+        e.preventDefault()
+        // req body
+        let req = {
+            title: title,
+            reference: reference,
+            resource: reference
+        };
+        console.log(req);
+        // post request to the server
+        let url = baseUrl + 'mentor/AddResources'
+
+    }
+
     return (
         <div className="">
             <h3 className="text-center text-white my-2 font-monospace shadow-none p-3 bg-danger ">Teacher Dashboard</h3>
@@ -55,16 +115,25 @@ function TeacherDashboard() {
                                     <form className="shadow-none p-3 mb-5 bg-light rounded">
                                         <div className="form-group">
                                             <label for="exampleFormControlInput1">Unit</label>
-                                            <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="Rotational Motion" />
+                                            <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="Rotational Motion"
+                                                value={unit}
+                                                onChange={(e) => { setUnit(e.target.value) }}
+                                            />
                                         </div>
                                         <div className="form-group">
                                             <label for="exampleFormControlInput1">Weightes</label>
-                                            <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" />
+                                            <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com"
+                                                value={weightes}
+                                                onChange={(e) => { setWeightes(e.target.value) }}
+                                            />
                                         </div>
                                         <div className="form-group">
                                             <div className="form-group">
                                                 <label for="exampleFormControlTextarea1">Topics</label>
-                                                <textarea className="form-control" id="exampleFormControlTextarea1" rows="6" placeholder="Centre of mass of a two-particle system, Centre of mass of a rigid body; Basic concepts of rotational motion; moment of a force, torque, angular momentum, conservation of angular momentum and its applications; moment of inertia, radius of gyration. Values of moments of inertia for simple geometrical objects, parallel and perpendicular axes theorems and their applications. Rigid body rotation, equations of rotational motion."></textarea>
+                                                <textarea className="form-control" id="exampleFormControlTextarea1" rows="6" placeholder="Centre of mass of a two-particle system, Centre of mass of a rigid body; Basic concepts of rotational motion; moment of a force, torque, angular momentum, conservation of angular momentum and its applications; moment of inertia, radius of gyration. Values of moments of inertia for simple geometrical objects, parallel and perpendicular axes theorems and their applications. Rigid body rotation, equations of rotational motion."
+                                                    value={topics}
+                                                    onChange={(e) => { setTopics(e.target.value) }}
+                                                ></textarea>
                                             </div>
                                         </div>
                                         <button type="button" className="btn btn-dark my-2 px-5">Add</button>
@@ -72,21 +141,28 @@ function TeacherDashboard() {
                                 </div>
                             </div>
                             <div className="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                <form className="shadow-none p-3 mb-5 bg-light rounded">
+                                <form className="shadow-none p-3 mb-5 bg-light rounded" onSubmit={AddResource}>
                                     <div className="form-group">
                                         <label for="exampleFormControlInput1">Title</label>
-                                        <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" />
+                                        <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com"
+                                            value={title}
+                                            onChange={(e) => { setTitle(e.target.value) }} />
                                     </div>
 
                                     <div className="form-group">
                                         <label for="exampleFormControlTextarea1">About the resource</label>
-                                        <textarea className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                        <textarea className="form-control" id="exampleFormControlTextarea1" rows="3"
+                                            value={resource}
+                                            onChange={(e) => { setResource(e.target.value) }}
+                                        ></textarea>
                                     </div>
                                     <div className="form-group">
                                         <label for="exampleFormControlInput1">add resource link</label>
-                                        <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="http://youtube/embed/23d3def" />
+                                        <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="http://youtube/embed/23d3def"
+                                            value={reference}
+                                            onChange={(e) => { setReference(e.target.value) }} />
                                     </div>
-                                    <div className="form-group my-2">
+                                    {/* <div className="form-group my-2">
 
                                         <form>
                                             <div className="form-group">
@@ -97,7 +173,7 @@ function TeacherDashboard() {
                                         </form>
                                         <button type="button" className="btn btn-dark my-2 px-5">Add</button>
 
-                                    </div>
+                                    </div> */}
 
                                 </form>
                             </div>

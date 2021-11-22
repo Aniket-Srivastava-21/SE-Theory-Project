@@ -29,6 +29,7 @@ function PaymentSuccess() {
       .then((res) => {
         console.log(res);
         setOrderID(res.data.result._id);
+        localStorage.setItem("exam",location.state.course.exam)
       })
   }
   async function generatePDF() {

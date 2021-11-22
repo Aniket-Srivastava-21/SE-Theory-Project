@@ -5,11 +5,11 @@ import cors from "cors"
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import session from "express-session";
-import ejs from "ejs";
 import fileUpload from "express-fileupload";
 import authRoutes from "./routes/auth.js";
 import profileRoutes from "./routes/profile.js";
 import courseRoutes from "./routes/courses.js"
+import studentRoute from "./routes/studentRouter.js"
 
 dotenv.config();
 const app = express();
@@ -54,6 +54,7 @@ app.listen(port,()=>{
 app.use("/", authRoutes);
 app.use("/profile", profileRoutes);
 app.use("/courses", courseRoutes);
+app.use("/mentor", studentRoute);
 
 app.get("/",(req,res)=>{
     res.send('Working!!');

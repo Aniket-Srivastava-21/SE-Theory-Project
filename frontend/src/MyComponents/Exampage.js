@@ -46,11 +46,11 @@ export const ExamPage = () => {
                     <div className="card col-5 my-5 mx-4 px-0">
                     <img src="/assets/images/maths.jpeg" className="card-img-top" height="300px" alt="maths"/>
                     <div className="card-body">
-                        <h5 className="card-title">{ course }</h5>
+                    <h5 className="card-title">{ course }</h5>
                         <div className="d-flex py-2 justify-content-between">
                         { token !== null ? (user.role === "Student" ? <Link to={{pathname : "/courses", 
                         state : { user:user, exam : location.state.exam, subject : course }}} className="btn btn-primary">Go to courses</Link> :
-                        <Link to="/mentorform"  className="btn btn-primary">Teach Subject</Link>) : (<Link to="/login"  className="btn btn-primary">Login to view details</Link>) }
+                        <Link to="/mentorform0"  className="btn btn-primary">Teach Subject</Link>) : (<Link to="/login"  className="btn btn-primary">Login to view details</Link>) }
                         {/* { user.role === "Student" ? <Link to={{pathname : "/courses", state : { user:user, exam : location.state.exam, subject : course }}} className="btn btn-primary">Go to courses</Link> :
                         <Link to="/mentorform"  className="btn btn-primary">Teach Subject</Link>}  */}
                         </div>

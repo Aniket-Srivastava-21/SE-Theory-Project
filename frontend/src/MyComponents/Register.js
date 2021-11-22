@@ -37,6 +37,9 @@ export const Register = () => {
                 console.log(res);
                 if(res.data.auth){
                     localStorage.setItem("token", res.data.token);
+                    localStorage.setItem("name", res.data.result.name);
+                    localStorage.setItem("role",res.data.result.role)
+                    localStorage.setItem("exam",res.data.result.exam)
                     history.push('/');
                     window.location.reload();
                 }else{

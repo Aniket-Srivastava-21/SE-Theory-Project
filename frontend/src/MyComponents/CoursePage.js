@@ -50,7 +50,7 @@ export const CoursePage = () => {
                     <p className="fs-4">No. of hrs per week: 5</p>
                     <p className="fs-4">Fees: { course.Fees }</p>
                 <div className="text-end">
-                { isEnrolled ? (<Link to="/coursedashboard" className="btn btn-outline-success btn-lg w-25" type="button">Go to Course</Link>) : 
+                { isEnrolled ? (<Link to={{pathname : "/coursedashboard", state : { user : location.state.user, course : course }}} className="btn btn-outline-success btn-lg w-25" type="button">Go to Course</Link>) : 
                 (<Link to={{pathname : "/payment", state : { user : location.state.user, course : course }}} className="btn btn-outline-success btn-lg w-25" type="button">Enroll</Link>) }
                 
                 </div>

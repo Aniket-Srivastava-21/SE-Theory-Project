@@ -16,9 +16,10 @@ import Payment from "./MyComponents/Payment";
 import InternetBanking from "./MyComponents/InternetBanking";
 import CreditCard from "./MyComponents/CreditCard";
 import PaymentSuccess from "./MyComponents/PaymentSuccess";
-import Upi from "./MyComponents/Upi";
-import ForgotPassword from "./MyComponents/ForgotPassword";
-import MentorForm from "./MyComponents/MentorForm";
+import Upi from "./MyComponents/Upi"
+import ForgotPassword from './MyComponents/ForgotPassword';
+import MentorForm from './MyComponents/MentorForm';
+import MentorForm0 from './MyComponents/MentorForm0';
 import TeacherDashboard from "./MyComponents/TeacherDashboard";
 import Feedbacks from "./MyComponents/Feedbacks";
 
@@ -60,6 +61,9 @@ function App() {
 
         <Route exact path="/mentorform">
           <MentorForm />
+        </Route>
+        <Route exact path="/mentorform0">
+          <MentorForm0/>
         </Route>
 
         <Route exact path="/">
