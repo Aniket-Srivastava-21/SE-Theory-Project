@@ -1,9 +1,9 @@
 import express from "express";
 import { verifyJwt } from "../middleware/validateUser.js";
-import {addResources,getFeedback} from "../controllers/student.js";
+import {addFeedback, getFeedback} from "../controllers/student.js";
 const router = express.Router();
 
-router.post("/addfeedback", verifyJwt, addResources);
+router.post("/addfeedback", verifyJwt, addFeedback);
 router.get("/getfeedback",verifyJwt,getFeedback);
 
 export default router;

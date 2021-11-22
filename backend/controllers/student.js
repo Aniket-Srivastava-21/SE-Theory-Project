@@ -1,6 +1,6 @@
 import Course from "../model/courses.js";
 
-export let addResources = async (req, res) => {
+export let addFeedback = async (req, res) => {
   try {
     console.log("req is: ", req);
 
