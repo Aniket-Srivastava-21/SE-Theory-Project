@@ -36,7 +36,7 @@ export const Login = () => {
     };
 
     return (
-        <div className="text-center my-5 container w-25 rounded border">
+        <div className="text-center my-5 container w-25 rounded border border-dark shadow">
             <div className="form-signin p-3">
                 <form onSubmit={login}>
                     <h1 className="h3 pt-3 mb-5 fw-normal ">Login</h1>
