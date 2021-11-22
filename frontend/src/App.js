@@ -1,20 +1,16 @@
-import './App.css';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from "react-router-dom";
-import StudentDashboard from './MyComponents/StudentDashboard';
-import MentorDashboard from './MyComponents/MentorDashboard';
-import MentorFeedback from './MyComponents/MentorFeedback';
-import CourseDashboard from './MyComponents/CourseDashboard';
-import { ExamPage } from './MyComponents/Exampage';
-import { CoursePage } from './MyComponents/CoursePage';
-import { Login } from './MyComponents/Login';
-import { Register } from './MyComponents/Register';
-import { Footer } from './MyComponents/Footer'
-import { Header } from './MyComponents/Header'
-import { MainPage } from './MyComponents/MainPage'
+import "./App.css";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import StudentDashboard from "./MyComponents/StudentDashboard";
+import MentorDashboard from "./MyComponents/MentorDashboard";
+import MentorFeedback from "./MyComponents/MentorFeedback";
+import CourseDashboard from "./MyComponents/CourseDashboard";
+import { ExamPage } from "./MyComponents/Exampage";
+import { CoursePage } from "./MyComponents/CoursePage";
+import { Login } from "./MyComponents/Login";
+import { Register } from "./MyComponents/Register";
+import { Footer } from "./MyComponents/Footer";
+import { Header } from "./MyComponents/Header";
+import { MainPage } from "./MyComponents/MainPage";
 import DebitCard from "./MyComponents/DebitCard";
 import Payment from "./MyComponents/Payment";
 import InternetBanking from "./MyComponents/InternetBanking";
@@ -24,55 +20,60 @@ import Upi from "./MyComponents/Upi"
 import ForgotPassword from './MyComponents/ForgotPassword';
 import MentorForm from './MyComponents/MentorForm';
 import MentorForm0 from './MyComponents/MentorForm0';
+import TeacherDashboard from "./MyComponents/TeacherDashboard";
+import Feedbacks from "./MyComponents/Feedbacks";
 
 function App() {
   return (
     <Router>
-      <Header/>
+      <Header />
       <Switch>
         <Route exact path="/exam">
-          <ExamPage/>
+          <ExamPage />
         </Route>
         <Route exact path="/courses">
-          <CoursePage/>
+          <CoursePage />
         </Route>
         <Route exact path="/login">
-          <Login/>
+          <Login />
         </Route>
         <Route exact path="/register">
-          <Register/>
-        </Route>   
-        <Route exact path='/mentordashboard'>
+          <Register />
+        </Route>
+        <Route exact path="/mentordashboard">
           <MentorDashboard />
         </Route>
-        <Route exact path='/studentdashboard'>
+        <Route exact path="/studentdashboard">
           <StudentDashboard />
         </Route>
         <Route exact path="/courseDashboard">
-          <CourseDashboard/>
+          <CourseDashboard />
         </Route>
-        <Route exact path="/feedback">
-          <MentorFeedback/>
+        <Route exact path="/feedbackform">
+          <MentorFeedback />
+        </Route>
+        <Route exact path="/feedbacks">
+          <Feedbacks />
         </Route>
         <Route exact path="/forgotpassword">
-          <ForgotPassword/>
+          <ForgotPassword />
         </Route>
 
         <Route exact path="/mentorform">
-          <MentorForm/>
+          <MentorForm />
         </Route>
         <Route exact path="/mentorform0">
           <MentorForm0/>
         </Route>
 
         <Route exact path="/">
-          <MainPage/>
+          <MainPage />
         </Route>
         <Route exact path="/payment">
           <Payment />
         </Route>
         <Route exact path="/debitcard">
-            <DebitCard />
+          <DebitCard />
         </Route>
         <Route exact path="/creditcard">
           <CreditCard />
@@ -86,11 +87,30 @@ function App() {
         <Route exact path="/upi">
           <Upi />
         </Route>
-    
+        <Route exact path="/payment">
+          <Payment />
+        </Route>
+        <Route exact path="/debitcard">
+          <DebitCard />
+        </Route>
+        <Route exact path="/creditcard">
+          <CreditCard />
+        </Route>
+        <Route exact path="/paymentsuccess">
+          <PaymentSuccess />
+        </Route>
+        <Route exact path="/internetbanking">
+          <InternetBanking />
+        </Route>
+        <Route exact path="/upi">
+          <Upi />
+        </Route>
+        <Route exact path="/teacherDashboard">
+          <TeacherDashboard />
+        </Route>
       </Switch>
-      <Footer/>
+      <Footer />
     </Router>
-
   );
 }
 

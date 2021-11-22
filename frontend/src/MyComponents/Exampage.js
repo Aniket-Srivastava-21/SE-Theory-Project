@@ -8,6 +8,8 @@ export const ExamPage = () => {
     let [user, setUser] = useState("");
     let [courses, setCourse] = useState([]);
 
+    let token = localStorage.getItem('token');
+
     useEffect(()=>{
         setUser(location.state.user)
         if(location.state.exam === "mains"){

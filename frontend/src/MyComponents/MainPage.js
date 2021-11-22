@@ -7,8 +7,10 @@ import baseUrl from '../services/Baseurl.js'
 
 export const MainPage = () => {
 
+    let token = localStorage.getItem('token');
 
     useEffect(()=>{
+        if(token !== null)
         getUserData();
     },[])
 
@@ -40,7 +42,7 @@ export const MainPage = () => {
             <div className="carousel-inner">
                 <div className="carousel-item active">
                 <img src="/assets/images/exam_prep1.jpg" className="d-block w-100 " height="500px" alt="exam-prep"/>
-                </div>
+                </div>  
                 <div className="carousel-item">
                 <img src="/assets/images/exam_prep2.jpg" className="d-block w-100 " height="500px" alt="exam-prep"/>
                 </div>
