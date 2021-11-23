@@ -138,7 +138,7 @@ function CourseDashboard() {
                             // setCurriculumCounter(curriculumCounter + 1)
                             return (
                               <tr>
-                                <th scope="row">{curriculumCounter}</th>
+                                <th scope="row">1.</th>
                                 <td>{data.unit}</td>
                                 <td>{data.weightes}</td>
                                 <td>{data.topics}</td>
@@ -175,7 +175,7 @@ function CourseDashboard() {
 
                               <li className="media">
                                 <div className="media-body">
-                                  <h5 className="mt-0 mb-1">{resourceCounter} {data.topic}</h5>
+                                  <h5 className="mt-0 mb-1 text-decoration-underline">1. {data.topic}:</h5>
                                   {data.discription}
                                 </div>
                                 <iframe
@@ -216,17 +216,17 @@ function CourseDashboard() {
           </div>
           {
             filledFeedback == true ? (
-              <div className="accordion border border-primary" id="accordionExample">
+              <div className="accordion" id="accordionExample">
                 <div className="accordion-item">
                   <h2 className="accordion-header" id="headingOne">
-                    <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                    <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                       Your Feedback
                     </button>
                   </h2>
-                  <div id="collapseOne" className="accordion-collapse collapse show bg-secondary text-white" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                  <div id="collapseOne" className="accordion-collapse collapse show " aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                     <div className="accordion-body">
                       <p>Rating: {rating}</p>
-                      <q>   {feedback} </q>
+                      Feedback:  <q> {feedback} </q>
                     </div>
                   </div>
                 </div>
