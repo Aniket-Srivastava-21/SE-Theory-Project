@@ -1,9 +1,9 @@
 import Course from "../model/courses.js";
 
+// add the feedback
 export let addFeedback = async (req, res) => {
   try {
     console.log("req is: ", req);
-    // add the feedback
     Course.findById({ _id: req.body.id }, (err, course) => {
       if (err) {
         console.error(err);
@@ -31,8 +31,6 @@ export let addFeedback = async (req, res) => {
 // get feedback
 export let getFeedback = async (req, res) => {
     try {
-        let subject = req.query.sub;
-        let exam = req.query.exam;
         Course.findOne({ _id: req.body.id }, (err, course)=>{
             if(err){
                 console.log(err);

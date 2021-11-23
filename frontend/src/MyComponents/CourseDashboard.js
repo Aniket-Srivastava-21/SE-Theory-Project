@@ -10,8 +10,6 @@ function CourseDashboard() {
   let [filledFeedback, setFilledFeedback] = useState(false);
   let [feedback, setFeedback] = useState("");
   let [rating, setRating] = useState(0);
-  let [resourceCounter, setResourceCounter] = useState(0)
-  let [curriculumCounter, setCurriculumCounter] = useState(0)
 
   useEffect(() => {
     console.log(location.state);
@@ -22,8 +20,6 @@ function CourseDashboard() {
     let url = baseUrl + "/";
     setCurriculum(location.state.course.Curriculum);
     setResources(location.state.course.Resources);
-    setResourceCounter(0)
-    setCurriculumCounter(0)
     let username = localStorage.getItem("name");
     // username
     console.log(username)
@@ -134,11 +130,10 @@ function CourseDashboard() {
 
                         </thead>
                         <tbody>
-                          {curriculum.map(function (data) {
-                            // setCurriculumCounter(curriculumCounter + 1)
+                          {curriculum.map(function (data,i) {
                             return (
                               <tr>
-                                <th scope="row">1.</th>
+                                <th scope="row">{i+1}.</th>
                                 <td>{data.unit}</td>
                                 <td>{data.weightes}</td>
                                 <td>{data.topics}</td>
@@ -166,16 +161,12 @@ function CourseDashboard() {
                     ) : (
                       <ul className="list-unstyled">
                         {
-
-
-                          resources.map(function (data) {
-                            // setResourceCounter(resourceCounter + 1)
-
+                          resources.map(function (data,i) {
                             return (
 
                               <li className="media">
                                 <div className="media-body">
-                                  <h5 className="mt-0 mb-1 text-decoration-underline">1. {data.topic}:</h5>
+                                  <h5 className="mt-0 mb-1 text-decoration-underline">{i+1}. {data.topic}:</h5>
                                   {data.discription}
                                 </div>
                                 <iframe
@@ -203,7 +194,6 @@ function CourseDashboard() {
                                 </div>
                                 <hr />
                               </li>
-
                             )
                           })
                         }
@@ -223,10 +213,10 @@ function CourseDashboard() {
                       Your Feedback
                     </button>
                   </h2>
-                  <div id="collapseOne" className="accordion-collapse collapse show " aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                  <div id="collapseOne" className="accordion-collapse collapse  " aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                     <div className="accordion-body">
-                      <p>Rating: {rating}</p>
-                      Feedback:  <q> {feedback} </q>
+                      <p> <b>Rating:</b>  {rating}</p>
+                     <b>Feedback:  </b> <q> {feedback} </q>
                     </div>
                   </div>
                 </div>

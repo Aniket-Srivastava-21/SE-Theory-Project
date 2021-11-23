@@ -5,42 +5,40 @@ import baseUrl from "../services/Baseurl";
 import FeedbackCard from "./FeedbackCard";
 
 function TeacherDashboard() {
-  // Add resource backend code
   let [title, setTitle] = useState("");
   let [resource, setResource] = useState("");
   let [reference, setReference] = useState("");
   let [unit, setUnit] = useState("");
   let [weightes, setWeightes] = useState("");
   let [topics, setTopics] = useState("");
-  let [feedbacks,setFeedbacks]=useState([]);
-  let [course,setCourse]=useState({})
+  let [feedbacks, setFeedbacks] = useState([]);
+  let [course, setCourse] = useState({});
 
   useEffect(() => {
-    // console.log(location.state);
     getCourseDetails();
   }, []);
 
+  function getCourseDetails() {
+    let url = baseUrl + "mentor/courseDetails?id=" + "6197387d3e1769db49617b05";
+    axios
+      .get(url, {
+        headers: {
+          "x-access-token": localStorage.getItem("token"),
+        },
+      })
+      .then((res) => {
+        console.log("response is:", res.data.result);
+        if (res.data.auth) {
+          setCourse(res.data.result);
+          setFeedbacks(res.data.result.Feedback);
+          // console.log("feedbacks are: ",feedbacks)
+        } else console.error(res.data.msg);
+      });
+  }
 
-  function getCourseDetails(){
-    let url = baseUrl + "mentor/courseDetails?id="+"6197387d3e1769db49617b05";
-    axios.get(url, {
-        headers : {
-            "x-access-token" : localStorage.getItem('token'),
-        }
-    }).then((res)=>{
-        console.log("response is:",res.data.result);
-        if(res.data.auth){
-            setCourse(res.data.result);
-            setFeedbacks(res.data.result.Feedback);
-            // console.log("feedbacks are: ",feedbacks)
-        }
-        else
-        console.error(res.data.msg)
-    })
-}
+
   // file upload remaining
   function AddResource(e) {
-    // prevent the default action
     e.preventDefault();
     // req body
     let req = {
@@ -62,10 +60,8 @@ function TeacherDashboard() {
       .then((res) => {
         console.log(res);
         console.log("Resources added");
-        // history.push("/discuss");
       })
       .catch((err) => console.error(err));
-
     //   clear the title and resource and reference values
     setTitle("");
     setReference("");
@@ -95,7 +91,6 @@ function TeacherDashboard() {
       .then((res) => {
         console.log(res);
         console.log("Topics added");
-        // history.push("/discuss");
       })
       .catch((err) => console.error(err));
 
@@ -310,8 +305,12 @@ function TeacherDashboard() {
             </div>
           </div>
           <div>
-            <Link  to={{pathname : "/feedbacks", state : { feedbacks : feedbacks }}}>
-              <button className="btn btn-success link-primary text-white text-right my-2">View All Feedbacks</button>
+            <Link
+              to={{ pathname: "/feedbacks", state: { feedbacks: feedbacks } }}
+            >
+              <button className="btn btn-success link-primary text-white text-right my-2">
+                View All Feedbacks
+              </button>
             </Link>
           </div>
         </div>
