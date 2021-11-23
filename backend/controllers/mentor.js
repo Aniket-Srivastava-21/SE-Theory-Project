@@ -2,15 +2,96 @@ import TimeTable from "../model/timetable.js";
 import Course from "../model/courses.js";
 
 export let setTimeTable = async (req, res) => {
+    // console.log("hello5");
     try {
         console.log(req.body);
-        // TimeTable.findOne({exam: req.body.exam}).then((timetable) => {
-        //     timetable.monday.push()
-        // })
-        // // var a = new Array()
-        
+        TimeTable.findOne({exam: req.body.exam}).then((timetable) => {
+            console.log("hello1");
+            // console.log(timetable);
+            if(timetable) {
+                if(req.body.monday !== undefined)
+                    for(const value of req.body.monday) {
+                        timetable.monday.push({slot: value, course: req.body.course, mentor: req.body.mentor})
+                    }
+                if(req.body.tuesday !== undefined)
+                    for(const value of req.body.tuesday) {
+                        timetable.tuesday.push({slot: value, course: req.body.course, mentor: req.body.mentor})
+                    }
+                if(req.body.wednesday !== undefined)
+                    for(const value of req.body.wednesday) {
+                        timetable.wednesday.push({slot: value, course: req.body.course, mentor: req.body.mentor})
+                    }
+                if(req.body.thursday !== undefined)
+                    for(const value of req.body.thursday) {
+                        timetable.thursday.push({slot: value, course: req.body.course, mentor: req.body.mentor})
+                    }
+                if(req.body.friday !== undefined)
+                    for(const value of req.body.friday) {
+                        timetable.friday.push({slot: value, course: req.body.course, mentor: req.body.mentor})
+                    }
+                timetable.save((err, result) => {
+                    if (err) throw err;
+                    else console.log(result);
+                //   send response
+                    res.send("succesfully inserted");
+                });
+            }
+            else {
+                var timetable = new TimeTable();
+                console.log("hello");
+                // console.log(timetable);
+                // console.log(req.body.wednesday);
+                timetable.exam = req.body.exam;
+
+                if(req.body.monday !== undefined)
+                    for(const value of req.body.monday) {
+                        timetable.monday.push({slot: value, course: req.body.course, mentor: req.body.mentor})
+                    }
+                if(req.body.tuesday !== undefined)
+                    for(const value of req.body.tuesday) {
+                        timetable.tuesday.push({slot: value, course: req.body.course, mentor: req.body.mentor})
+                    }
+                if(req.body.wednesday !== undefined)
+                    for(const value of req.body.wednesday) {
+                        timetable.wednesday.push({slot: value, course: req.body.course, mentor: req.body.mentor})
+                    }
+                if(req.body.thursday !== undefined)
+                    for(const value of req.body.thursday) {
+                        timetable.thursday.push({slot: value, course: req.body.course, mentor: req.body.mentor})
+                    }
+                if(req.body.friday !== undefined)
+                    for(const value of req.body.friday) {
+                        timetable.friday.push({slot: value, course: req.body.course, mentor: req.body.mentor})
+                    }
+                timetable.save((err, result) => {
+                    if (err) throw err;
+                    else console.log(result);
+                //   send response
+                    res.send("successfully inserted");
+                });
+            }
+        })
     }
     catch(error) {
+        console.log(error);
+    }
+}
+
+export let getTimeTable = async (req, res) => {
+    try {
+        console.log(req.body);
+        TimeTable.findOne({exam: req.body.exam}).then((timetable) => {
+            console.log("hello1");
+            // console.log(timetable);
+            if(timetable) {
+                res.status(200).json({auth: "true", result: timetable});
+            }
+            else {
+                res.status(201).send("timetable does not exist!");
+            }
+        })
+    }
+    catch (error) {
         console.log(error);
     }
 }

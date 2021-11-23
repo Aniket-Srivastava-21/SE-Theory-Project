@@ -32,12 +32,15 @@ function App() {
     const token = localStorage.getItem("token");
     return token !== null;
     });
+  const [exam, setExam] = useState("");
+  const [course, setCourse] = useState("");
+
   return (
     <Router>
       <Header />
       <Switch>
         <Route exact path="/exam">
-          <ExamPage />
+          <ExamPage setCourse = {setCourse} />
         </Route>
         <Route exact path="/courses">
           <CoursePage />
@@ -68,14 +71,14 @@ function App() {
           <ForgotPassword />
         </Route>
         <Route exact path="/mentorform">
-          <MentorForm />
+          <MentorForm exam = {exam} course = {course} />
         </Route>
         <Route exact path="/mentorform0">
           <MentorForm0/>
         </Route>
 
         <Route exact path="/">
-          <MainPage />
+          <MainPage setExam = {setExam}/>
         </Route>
         <Route exact path="/payment">
         { isAuthenticated ? <Payment /> : <Login/> } 

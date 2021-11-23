@@ -31,8 +31,9 @@ export default function MentorForm(props) {
             fd.append('friday', value);
         }
         fd.append('mentor', localStorage.getItem("name"));
-        fd.append('exam', "hello");
-        const url = baseUrl + "mentor-info/timetable";
+        fd.append('course', props.course);
+        fd.append('exam', props.exam);
+        const url = baseUrl + "mentor/timetable";
         Axios.post(url, fd, {
             headers: {
                 "x-access-token": localStorage.getItem("token"),

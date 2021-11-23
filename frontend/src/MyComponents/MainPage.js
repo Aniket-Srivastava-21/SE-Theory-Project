@@ -5,7 +5,7 @@ import baseUrl from '../services/Baseurl.js'
 
 
 
-export const MainPage = () => {
+export const MainPage = (props) => {
 
     let token = localStorage.getItem('token');
 
@@ -68,7 +68,7 @@ export const MainPage = () => {
                 <div className="card-body">
                     <h5 className="card-title">Exam Name</h5>
                     <p className="card-text">Brief exam description to let users know the most importants details of the exam</p>
-                    { (exam === "" || exam === "mains") ?   <Link to={{pathname : "/exam", state : { user : user, exam : "mains" }}} className="btn btn-primary">Go to Exam</Link> : 
+                    { (exam === "" || exam === "mains") ?   <Link to={{pathname : "/exam", state : { user : user, exam : "mains" }}} className="btn btn-primary" onClick = {(e) => {props.setExam("mains")}} >Go to Exam</Link> : 
                     <Link to="#" ><button className="btn btn-primary" disabled>Go to Exam</button></Link>}
                    
                 </div>
@@ -78,7 +78,7 @@ export const MainPage = () => {
                 <div className="card-body">
                     <h5 className="card-title">Exam Name</h5>
                     <p className="card-text">Brief exam description to let users know the most importants details of the exam</p>
-                    { (exam === "" || exam === "advanced") ?   <Link to={{pathname : "/exam", state : { user : user, exam : "advanced" }}} className="btn btn-primary">Go to Exam</Link> : 
+                    { (exam === "" || exam === "advanced") ?   <Link to={{pathname : "/exam", state : { user : user, exam : "advanced" }}} className="btn btn-primary" onClick = {(e) => {props.setExam("advanced")}} >Go to Exam</Link> : 
                     <Link to="#" ><button className="btn btn-primary" disabled>Go to Exam</button></Link>}
                 </div>
                 </div>
@@ -87,7 +87,7 @@ export const MainPage = () => {
                 <div className="card-body">
                     <h5 className="card-title">Exam Name</h5>
                     <p className="card-text">Brief exam description to let users know the most importants details of the exam</p>
-                    { (exam === "" || exam === "gate")?   <Link to={{pathname : "/exam", state : { user : user, exam : "gate" }}} className="btn btn-primary">Go to Exam</Link> : 
+                    { (exam === "" || exam === "gate")?   <Link to={{pathname : "/exam", state : { user : user, exam : "gate" }}} className="btn btn-primary" onClick = {(e) => {props.setExam("gate")}} >Go to Exam</Link> : 
                     <Link to="#" ><button className="btn btn-primary" disabled>Go to Exam</button></Link>}
                 </div>
                 </div>
@@ -96,7 +96,7 @@ export const MainPage = () => {
                 <div className="card-body">
                     <h5 className="card-title">Exam Name</h5>
                     <p className="card-text">Brief exam description to let users know the most importants details of the exam</p>
-                    { (exam === "" || exam === "neet") ?   <Link to={{pathname : "/exam", state : { user : user, exam : "neet" }}} className="btn btn-primary">Go to Exam</Link> : 
+                    { (exam === "" || exam === "neet") ?   <Link to={{pathname : "/exam", state : { user : user, exam : "neet" }}} className="btn btn-primary" onClick = {(e) => {props.setExam("neet")}} >Go to Exam</Link> : 
                     <Link to="#" ><button className="btn btn-primary" disabled>Go to Exam</button></Link>}
                 </div>
                 </div>
