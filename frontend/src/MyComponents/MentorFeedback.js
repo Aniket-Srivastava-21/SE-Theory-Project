@@ -27,7 +27,7 @@ function MentorFeedback() {
     console.log(req);
 
     // post request to the server
-    let url = baseUrl + "mentor/addfeedback";
+    let url = baseUrl + "student/addfeedback";
     axios
       .post(url, req, {
         headers: {
@@ -41,7 +41,7 @@ function MentorFeedback() {
       })
       .catch((err) => console.error(err));
 
-    //   clear the rating and feedback valur
+    //   clear the rating and feedback value
     setrating("");
     setfeedback("");
   }
@@ -60,20 +60,6 @@ function MentorFeedback() {
     <form onSubmit={handleSubmit}>
       <div className="m-5 ">
         <div className="fs-4 text-center pb-3">Teacher Feedback Form</div>
-        {/* {
-                    if(status)
-                {
-                    return (
-
-                <div className="alert alert-warning alert-dismissible fade show" role="alert">
-                    <strong>Hurrey!!</strong> You should successfully submitted the feedback form.
-                    <button type="button" className="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                )
-                }
-                } */}
         <div className="row border border-dark p-3 rounded">
           <div className="form-group mb-3">
             <label for="formGroupExampleInput" className="form-label">
@@ -104,11 +90,9 @@ function MentorFeedback() {
             </div>
           </div>
           <div>
-            {/* <Link to="/discuss"> */}
             <button type="submit" className="btn btn-success my-3">
               Submit Feedback
             </button>
-            {/* </Link> */}
           </div>
         </div>
       </div>
