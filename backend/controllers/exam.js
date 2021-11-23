@@ -36,3 +36,21 @@ export let getExams = async (req,res) =>{
         
     }
 }
+
+export let getExamDetail = async (req,res)=>{
+    try {
+        
+        let exam = req.query.exam;
+        Exam.findOne({alt : exam}, (err,found) => {
+            if(err){
+                console.log(err);
+            }else{
+                return res.status(200).json({auth: true, result : found});
+            }
+        })
+
+    } catch (error) {
+        console.log(error);
+        
+    }
+}

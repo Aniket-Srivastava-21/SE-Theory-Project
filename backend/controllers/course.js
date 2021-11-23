@@ -90,3 +90,29 @@ export let generatePDF = async (req,res) => {
         console.log(error);        
     }
 }
+
+export let getStudentDetails = async (req,res) =>{ 
+    try {
+        
+        let id = req.query.id;
+        Course.findById(id,(err,found)=>{
+            if(err){
+                console.log(err);
+            }else{
+                User.find({}).where('_id').in(found.studentList).exec((err, records) => {
+                    if(err){
+                        console.log(err);
+                    }else{
+                        console.log(records);
+                        return res.status(201).json({auth:true, result: records});
+                    }
+                });
+            }
+        })
+        
+
+    } catch (error) {
+        console.log(error);
+        
+    }
+}
