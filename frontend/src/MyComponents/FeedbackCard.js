@@ -1,16 +1,15 @@
 import React from "react";
 
-function FeedbackCard() {
+function FeedbackCard(props) {
+
     return (
-        <div className="d-sm-flex  justify-content-evenly flex-fill flex-wrap align-items-center my-2 ">
-        <div className="col-5 border border-dark  shadow-none p-3 bg-light rounded" >
-            <q className="fs-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur sequi officiis quas earum ipsam quis, illum vero impedit eos veniam aut provident consequatur totam id placeat cumque accusantium maiores excepturi.</q>
+        <div className="col-5 shadow p-3 mb-5 bg-body rounded my-2 " >
+            <p>Rating:{props.feedback.rate}</p>
+            <q className="fs-5">{props.feedback.feedback}.</q>
             <p className="my-1">
-                <span> <i className="bi bi-person-circle"></i> Vikas Singh</span>
+                <span> <i className="bi bi-person-circle"></i> {props.feedback.user}</span>
             </p>
         </div>
-       </div>
-
     )
 }
 

@@ -19,9 +19,7 @@ export let getCourseDetails = async (req,res) => {
                     return res.status(200).json({ auth: false, msg : "No course exist" })
                 }
             }
-        })
-        
-        
+        })        
     } catch (error) {
         console.log(error);        
     }
