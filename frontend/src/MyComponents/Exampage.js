@@ -12,32 +12,33 @@ export const ExamPage = () => {
 
     useEffect(()=>{
         setUser(location.state.user)
-        if(location.state.exam === "mains"){
-            setExam("JEE-MAINS");
-            let sub = ['Maths','Physics','Chemistry']
-            setCourse(sub); 
-        }
-        else if(location.state.exam === "advanced"){
-            setExam("JEE-ADVANCED");
-            let sub = ['Maths','Physics','Chemistry']
-            setCourse(sub); 
-        }
-        else if(location.state.exam === "gate"){
-            let sub = ['Computer Science','Electronics','Mechanical']
-            setCourse(sub); 
-            setExam("GATE");  
-        }
-        else if(location.state.exam === "neet"){
-            setExam("NEET");      
-            let sub = ['Physics','Biology','Chemistry']
-            setCourse(sub); 
-        }
+        setCourse(location.state.exam1.subjects);
+        // if(location.state.exam === "mains"){
+        //     setExam("JEE-MAINS");
+        //     let sub = ['Maths','Physics','Chemistry']
+        //     setCourse(sub); 
+        // }
+        // else if(location.state.exam === "advanced"){
+        //     setExam("JEE-ADVANCED");
+        //     let sub = ['Maths','Physics','Chemistry']
+        //     setCourse(sub); 
+        // }
+        // else if(location.state.exam === "gate"){
+        //     let sub = ['Computer Science','Electronics','Mechanical']
+        //     setCourse(sub); 
+        //     setExam("GATE");  
+        // }
+        // else if(location.state.exam === "neet"){
+        //     setExam("NEET");      
+        //     let sub = ['Physics','Biology','Chemistry']
+        //     setCourse(sub); 
+        // }
     },[]);
 
 
     return (
         <div className="container py-3">
-            <p className="pt-5 pb-3 text-center display-4" >{ exam }</p>
+            <p className="pt-5 pb-3 text-center display-4" >{ location.state.exam1.name }</p>
             <hr/>
             <p className="pt-5 text-center display-1" >Subjects</p>
             <div className="row justify-content-center">
@@ -49,7 +50,7 @@ export const ExamPage = () => {
                     <h5 className="card-title">{ course }</h5>
                         <div className="d-flex py-2 justify-content-between">
                         { token !== null ? (user.role === "Student" ? <Link to={{pathname : "/courses", 
-                        state : { user:user, exam : location.state.exam, subject : course }}} className="btn btn-primary">Go to courses</Link> :
+                        state : { user:user, exam : location.state.exam, subject : course, exam1 : location.state.exam1 }}} className="btn btn-primary">Go to courses</Link> :
                         <Link to="/mentorform0"  className="btn btn-primary">Teach Subject</Link>) : (<Link to="/login"  className="btn btn-primary">Login to view details</Link>) }
                         {/* { user.role === "Student" ? <Link to={{pathname : "/courses", state : { user:user, exam : location.state.exam, subject : course }}} className="btn btn-primary">Go to courses</Link> :
                         <Link to="/mentorform"  className="btn btn-primary">Teach Subject</Link>}  */}

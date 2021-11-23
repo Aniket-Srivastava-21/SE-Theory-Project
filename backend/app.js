@@ -10,6 +10,7 @@ import authRoutes from "./routes/auth.js";
 import profileRoutes from "./routes/profile.js";
 import courseRoutes from "./routes/courses.js"
 import studentRoute from "./routes/studentRouter.js"
+import examRoute from "./routes/exam.js"
 
 dotenv.config();
 const app = express();
@@ -55,6 +56,7 @@ app.use("/", authRoutes);
 app.use("/profile", profileRoutes);
 app.use("/courses", courseRoutes);
 app.use("/mentor", studentRoute);
+app.use("/exam", examRoute);
 
 app.get("/",(req,res)=>{
     res.send('Working!!');
