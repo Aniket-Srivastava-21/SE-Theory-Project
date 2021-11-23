@@ -10,6 +10,8 @@ function CourseDashboard() {
   let [filledFeedback, setFilledFeedback] = useState(false);
   let [feedback, setFeedback] = useState("");
   let [rating, setRating] = useState(0);
+  let [resourceCounter, setResourceCounter] = useState(0)
+  let [curriculumCounter, setCurriculumCounter] = useState(0)
 
   useEffect(() => {
     console.log(location.state);
@@ -20,6 +22,8 @@ function CourseDashboard() {
     let url = baseUrl + "/";
     setCurriculum(location.state.course.Curriculum);
     setResources(location.state.course.Resources);
+    setResourceCounter(0)
+    setCurriculumCounter(0)
     let username = localStorage.getItem("name");
     // username
     console.log(username)
@@ -127,14 +131,16 @@ function CourseDashboard() {
                             <th scope="col">Weightage</th>
                             <th scope="col">topics</th>
                           </tr>
+
                         </thead>
                         <tbody>
                           {curriculum.map(function (data) {
+                            // setCurriculumCounter(curriculumCounter + 1)
                             return (
                               <tr>
-                                <th scope="row">1</th>
+                                <th scope="row">{curriculumCounter}</th>
                                 <td>{data.unit}</td>
-                                <td>{data.weightes}%</td>
+                                <td>{data.weightes}</td>
                                 <td>{data.topics}</td>
                               </tr>
                             );
@@ -160,17 +166,21 @@ function CourseDashboard() {
                     ) : (
                       <ul className="list-unstyled">
                         {
+
+
                           resources.map(function (data) {
+                            // setResourceCounter(resourceCounter + 1)
+
                             return (
 
                               <li className="media">
                                 <div className="media-body">
-                                  <h5 className="mt-0 mb-1">1. {data.topic}</h5>
+                                  <h5 className="mt-0 mb-1">{resourceCounter} {data.topic}</h5>
                                   {data.discription}
                                 </div>
                                 <iframe
-                                  width="560"
-                                  height="315"
+                                  width="100%"
+                                  height="600"
                                   src={data.reference}
                                   title="YouTube video player"
                                   frameborder="0"
@@ -191,6 +201,7 @@ function CourseDashboard() {
                                     </i>
                                   </a>
                                 </div>
+                                <hr />
                               </li>
 
                             )
@@ -205,11 +216,10 @@ function CourseDashboard() {
           </div>
           {
             filledFeedback == true ? (
-
               <div className="accordion border border-primary" id="accordionExample">
                 <div className="accordion-item">
                   <h2 className="accordion-header" id="headingOne">
-                    <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                       Your Feedback
                     </button>
                   </h2>
@@ -217,7 +227,6 @@ function CourseDashboard() {
                     <div className="accordion-body">
                       <p>Rating: {rating}</p>
                       <q>   {feedback} </q>
-
                     </div>
                   </div>
                 </div>
