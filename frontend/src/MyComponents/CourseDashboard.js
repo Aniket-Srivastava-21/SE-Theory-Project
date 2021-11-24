@@ -66,6 +66,36 @@ function CourseDashboard() {
     }
   }
 
+  const b64toBlob = (b64Data, contentType='', sliceSize=512) => {
+    const byteCharacters = atob(b64Data);
+    const byteArrays = [];
+  
+    for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+      const slice = byteCharacters.slice(offset, offset + sliceSize);
+  
+      const byteNumbers = new Array(slice.length);
+      for (let i = 0; i < slice.length; i++) {
+        byteNumbers[i] = slice.charCodeAt(i);
+      }
+  
+      const byteArray = new Uint8Array(byteNumbers);
+      byteArrays.push(byteArray);
+    }
+  
+    const blob = new Blob(byteArrays, {type: contentType});
+    return blob;
+  }
+
+  function viewPlan(){
+      let fileUrl = `data:application/pdf;base64,${location.state.course.coursePlan[0].data}`;
+      // const file = new Blob([fileUrl], { type: "application/pdf" });
+      // const fileURL = URL.createObjectURL(file);
+      // window.open(fileURL);
+      const blob = b64toBlob(location.state.course.coursePlan[0].data, 'application/pdf');
+      const blobUrl = URL.createObjectURL(blob);
+      window.open(blobUrl);
+  }
+
   return (
     <div className="">
       <h3 className="text-center text-white my-2 font-monospace shadow-none p-3 bg-danger ">
@@ -87,6 +117,10 @@ function CourseDashboard() {
               {" "}
               <i className="bi bi-person-fill"></i>
               <strong>Mentor: </strong> {location.state.course.mentor}
+            </div>
+            <div className="my-1">
+              <strong>Course Plan: </strong>
+               <button onClick={viewPlan} className="btn btn-dark">Download</button>
             </div>
           </div>
           <div className="d-flex justify-content-between ">
@@ -212,7 +246,7 @@ function CourseDashboard() {
                                 ></iframe>
                                 <br />
                                 <div>
-                                  <a
+                                  {/* <a
                                     href="../../public/Assets/kinetic_Energy.pdf"
                                     download
                                     rel="noopener noreferrer"
@@ -222,7 +256,7 @@ function CourseDashboard() {
                                       {" "}
                                       Download Material
                                     </i>
-                                  </a>
+                                  </a> */}
                                 </div>
                                 <hr />
                               </li>

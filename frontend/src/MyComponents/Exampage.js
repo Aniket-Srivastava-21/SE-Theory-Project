@@ -1,8 +1,11 @@
+import Axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useHistory } from 'react-router-dom'
+import baseUrl from '../services/Baseurl';
 
 export const ExamPage = (props) => {
 
+    let history = useHistory();
     let location = useLocation();
     let [exam, setExam] = useState("");
     let [user, setUser] = useState("");
@@ -13,28 +16,32 @@ export const ExamPage = (props) => {
     useEffect(()=>{
         setUser(location.state.user)
         setCourse(location.state.exam1.subjects);
-        // if(location.state.exam === "mains"){
-        //     setExam("JEE-MAINS");
-        //     let sub = ['Maths','Physics','Chemistry']
-        //     setCourse(sub); 
-        // }
-        // else if(location.state.exam === "advanced"){
-        //     setExam("JEE-ADVANCED");
-        //     let sub = ['Maths','Physics','Chemistry']
-        //     setCourse(sub); 
-        // }
-        // else if(location.state.exam === "gate"){
-        //     let sub = ['Computer Science','Electronics','Mechanical']
-        //     setCourse(sub); 
-        //     setExam("GATE");  
-        // }
-        // else if(location.state.exam === "neet"){
-        //     setExam("NEET");      
-        //     let sub = ['Physics','Biology','Chemistry']
-        //     setCourse(sub); 
-        // }
     },[]);
 
+    function checkMentor(course){
+        let url = baseUrl + "exam/checkMentor?exam="+location.state.exam1.alt + "&subject=" + course;
+        Axios.get(url, {
+            headers : {
+                "x-access-token" : localStorage.getItem('token'),
+            }
+        }).then((res)=>{
+            if(res.data.auth){
+                if(res.data.result.mentor === user.name){
+                    history.push({
+                        pathname : "/teacherdashboard", 
+                        state : { user:user, exam : location.state.exam, course : res.data.result, exam1 : location.state.exam1 }
+                    })                    
+                }else{
+                    alert('Mentor is already assigned for this subject!!');
+                }
+            }else{
+                history.push({
+                    pathname : "/mentorform0", 
+                    state : { user:user, exam : location.state.exam, subject : course, exam1 : location.state.exam1 }
+                })
+            }
+        })
+    }
 
     return (
         <div className="container py-3">
@@ -51,7 +58,7 @@ export const ExamPage = (props) => {
                         <div className="d-flex py-2 justify-content-between">
                         { token !== null ? (user.role === "Student" ? <Link to={{pathname : "/courses", 
                         state : { user:user, exam : location.state.exam, subject : course, exam1 : location.state.exam1 }}} className="btn btn-primary">Go to courses</Link> :
-                        <Link to={{pathname : "/mentorform0", state : { user:user, exam : location.state.exam, subject : course }}}  className="btn btn-primary">Teach Subject</Link>) : 
+                        <button onClick={()=>{checkMentor(course)}}  className="btn btn-primary">Teach Subject</button>) : 
                         (<Link to="/login"  className="btn btn-primary">Login to view details</Link>) }
 
                         {/* state : { user:user, exam : location.state.exam, subject : course }}} className="btn btn-primary" onClick={(e) => {props.setCourse(course)}}>Go to courses</Link> :

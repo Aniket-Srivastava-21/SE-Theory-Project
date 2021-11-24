@@ -116,3 +116,36 @@ export let getStudentDetails = async (req,res) =>{
         
     }
 }
+
+export let addCourse = async (req,res) =>{
+    try {
+        
+        console.log(req.body);
+        console.log(req.files);
+        let id = req.user;
+        User.findById(id, (err,user)=>{
+            if(err){
+                console.log(err);
+            }else{
+                user.exam = req.body.exam;
+                user.save();
+                let course = new Course({
+                    exam : req.body.exam,
+                    subject : req.body.subject,
+                    mentor : req.body.mentor,
+                    desc : req.body.desc,
+                    coursePlan : req.files.file,
+                    Fees : req.body.fees,
+                    slots : req.body.slots,
+                });
+                course.save();
+                return res.status(200).json({auth: true, result : course});
+            }
+        })
+        
+
+    } catch (error) {
+        console.log(error);
+        
+    }
+}

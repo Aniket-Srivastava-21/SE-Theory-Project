@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
 import baseUrl from "../services/Baseurl";
 import FeedbackCard from "./FeedbackCard";
 
 function TeacherDashboard() {
+  let location = useLocation();
   let [title, setTitle] = useState("");
   let [resource, setResource] = useState("");
   let [reference, setReference] = useState("");
@@ -16,12 +17,13 @@ function TeacherDashboard() {
   let [students, setStudents] = useState([]);
 
   useEffect(() => {
+    console.log(location.state);
     getCourseDetails();
     getStudentList();
   }, []);
 
   function getStudentList(){
-    let url = baseUrl + "courses/getStudentDetails?id="+ "6197387d3e1769db49617b05";
+    let url = baseUrl + "courses/getStudentDetails?id="+ location.state.course._id;
     axios.get(url, {
       headers : {
         "x-access-token": localStorage.getItem("token"),
@@ -35,21 +37,10 @@ function TeacherDashboard() {
   }
 
   function getCourseDetails() {
-    let url = baseUrl + "mentor/courseDetails?id=" + "6197387d3e1769db49617b05";
-    axios
-      .get(url, {
-        headers: {
-          "x-access-token": localStorage.getItem("token"),
-        },
-      })
-      .then((res) => {
-        console.log("response is:", res.data.result);
-        if (res.data.auth) {
-          setCourse(res.data.result);
-          setFeedbacks(res.data.result.Feedback);
-          // console.log("feedbacks are: ",feedbacks)
-        } else console.error(res.data.msg);
-      });
+    
+      setCourse(location.state.course);
+      setFeedbacks(location.state.course.Feedback);
+          
   }
 
 
@@ -58,7 +49,7 @@ function TeacherDashboard() {
     e.preventDefault();
     // req body
     let req = {
-      id: "6197387d3e1769db49617b05",
+      id: location.state.course._id,
       topic: title,
       discription: resource,
       reference: reference,
@@ -89,7 +80,7 @@ function TeacherDashboard() {
     e.preventDefault();
     // req body
     let req = {
-      id: "6197387d3e1769db49617b05",
+      id: location.state.course._id,
       unit: unit,
       weightes: weightes,
       topics: topics,
@@ -131,7 +122,7 @@ function TeacherDashboard() {
             <div>
               <span>About: </span>{" "}
               <span className="text-primary">
-                This course covers all the topics of the jee exam in depth.
+                { location.state.course.desc }
               </span>
             </div>
             <div className="my-1">
@@ -144,12 +135,12 @@ function TeacherDashboard() {
             <div>
               {" "}
               <i className="bi bi-calendar"></i> <strong>Start Date: </strong>{" "}
-              20/10/2021
+              { location.state.exam1.startDate }
             </div>
             <div>
               {" "}
               <i className="bi bi-calendar"></i> <strong>End Date: </strong>
-              20/10/2022
+              { location.state.exam1.endDate }
             </div>
           </div>
 
