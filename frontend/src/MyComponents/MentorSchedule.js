@@ -130,7 +130,7 @@ export default function MentorSchedule() {
                         <th scope="col">Day/Time</th>
                         <th scope="col">7:00 - 9:00</th>
                         <th scope="col">10:00 - 12:00</th>
-                        <th scope="col">13:00 - 16:00</th>
+                        <th scope="col">13:00 - 15:00</th>
                         <th scope="col">16:00 - 18:00</th>
                         <th scope="col">18:00 - 20:00</th>
                     </tr>

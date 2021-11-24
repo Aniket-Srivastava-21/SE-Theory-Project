@@ -10,7 +10,7 @@ export default function mentordashboard() {
         <>
             <div className="container-fluid py-5">
                 <div className="row">
-                    <div className="col-3">
+                    <div className="col-3"> 
                         <MentorDetails/>
                     </div>
                     <div className="col-9">
