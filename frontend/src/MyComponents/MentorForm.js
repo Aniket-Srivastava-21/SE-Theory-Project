@@ -1,8 +1,10 @@
+import Axios from 'axios';
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
+import baseUrl from '../services/Baseurl'
 
-export default function MentorForm() {
-
+export default function MentorForm(props) {
+    var history = useHistory();
     const [monday, setmonday] = useState(new Set())
     const [tuesday, settuesday] = useState(new Set())
     const [wednesday, setwednesday] = useState(new Set())
@@ -10,8 +12,43 @@ export default function MentorForm() {
     const [friday, setfriday] = useState(new Set())
 
     function handle_submit(e) {
-        console.log(monday, tuesday, wednesday, thursday, friday);
+        // console.log(monday, tuesday, wednesday, thursday, friday);
         // console.log("hello");
+        const fd = new FormData();
+        for(const value of monday) {
+            fd.append('monday', value);
+        }
+        for(const value of tuesday) {
+            fd.append('tuesday', value);
+        }
+        for(const value of wednesday) {
+            fd.append('wednesday', value);
+        }
+        for(const value of thursday) {
+            fd.append('thursday', value);
+        }
+        for(const value of friday) {
+            fd.append('friday', value);
+        }
+        fd.append('mentor', localStorage.getItem("name"));
+        fd.append('course', props.course);
+        fd.append('exam', props.exam);
+        const url = baseUrl + "mentor/timetable";
+        Axios.post(url, fd, {
+            headers: {
+                "x-access-token": localStorage.getItem("token"),
+            }
+        })
+        .then((res) => {
+            console.log(res);
+            if(res.status === 200) {
+                alert("Registered for course Successfully!");
+                history.push("/mentordashboard");
+            }
+            else {
+                alert("Some error occured! Try Again");
+            }
+        })
         e.preventDefault();
     }
 

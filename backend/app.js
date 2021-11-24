@@ -10,8 +10,8 @@ import authRoutes from "./routes/auth.js";
 import profileRoutes from "./routes/profile.js";
 import courseRoutes from "./routes/courses.js"
 import studentRoute from "./routes/studentRouter.js"
+import mentorRoute from "./routes/mentorRoute.js";
 import examRoute from "./routes/exam.js"
-import mentorRoute from "./routes/mentorRoute.js"
 
 dotenv.config();
 const app = express();

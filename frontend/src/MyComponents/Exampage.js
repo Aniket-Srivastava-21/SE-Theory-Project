@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 
-export const ExamPage = () => {
+export const ExamPage = (props) => {
 
     let location = useLocation();
     let [exam, setExam] = useState("");
@@ -51,7 +51,12 @@ export const ExamPage = () => {
                         <div className="d-flex py-2 justify-content-between">
                         { token !== null ? (user.role === "Student" ? <Link to={{pathname : "/courses", 
                         state : { user:user, exam : location.state.exam, subject : course, exam1 : location.state.exam1 }}} className="btn btn-primary">Go to courses</Link> :
-                        <Link to="/mentorform0"  className="btn btn-primary">Teach Subject</Link>) : (<Link to="/login"  className="btn btn-primary">Login to view details</Link>) }
+                        <Link to={{pathname : "/mentorform0", state : { user:user, exam : location.state.exam, subject : course }}}  className="btn btn-primary">Teach Subject</Link>) : 
+                        (<Link to="/login"  className="btn btn-primary">Login to view details</Link>) }
+
+                        {/* state : { user:user, exam : location.state.exam, subject : course }}} className="btn btn-primary" onClick={(e) => {props.setCourse(course)}}>Go to courses</Link> :
+                        <Link to={{pathname : "/mentorform0", 
+                        state : { user:user, exam : location.state.exam, subject : course }}} className="btn btn-primary" onClick={(e) => {props.setCourse(course)}} >Teach Subject</Link>) : (<Link to="/login"  className="btn btn-primary">Login to view details</Link>) } */}
                         {/* { user.role === "Student" ? <Link to={{pathname : "/courses", state : { user:user, exam : location.state.exam, subject : course }}} className="btn btn-primary">Go to courses</Link> :
                         <Link to="/mentorform"  className="btn btn-primary">Teach Subject</Link>}  */}
                         </div>
