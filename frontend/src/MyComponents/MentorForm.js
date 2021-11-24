@@ -10,10 +10,11 @@ export default function MentorForm(props) {
     const [wednesday, setwednesday] = useState(new Set())
     const [thursday, setthursday] = useState(new Set())
     const [friday, setfriday] = useState(new Set())
+    console.log(props.exam);
 
     function handle_submit(e) {
         // console.log(monday, tuesday, wednesday, thursday, friday);
-        // console.log("hello");
+        
         const fd = new FormData();
         for(const value of monday) {
             fd.append('monday', value);

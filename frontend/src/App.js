@@ -52,7 +52,7 @@ function App() {
           <Register />
         </Route>
         <Route exact path="/mentordashboard">
-        { isAuthenticated ? <MentorDashboard /> : <Login/> }
+        { isAuthenticated ? <MentorDashboard exam = {exam} /> : <Login/> }
           
         </Route>
         <Route exact path="/studentdashboard">
