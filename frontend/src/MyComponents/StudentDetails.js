@@ -20,11 +20,12 @@ export default function StudentDetails() {
                         Name : {location.state.name}
                     </div>
                 </li>
+                { location.state.exam === '' ? <></> :  
                 <li>
                     <div className="nav-link text-black">
                         Registerd Exam : {location.state.exam}
                     </div>
-                </li>
+                </li> }
                 {/* <li>
                     <Link to="#" className="nav-link text-black">
                         Edit Profile

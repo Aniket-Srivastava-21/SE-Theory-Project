@@ -31,6 +31,9 @@ export default function StudentSchedule() {
     }
 
     function checkDay(day, slot){
+        if(!timetable){
+            return '';
+        }
         let f = false;
         let subject = '';
         if(flag){            
@@ -110,6 +113,7 @@ export default function StudentSchedule() {
     return (
         <div className="container rounded mt-5 border bg-light border-dark py-3">
             <h2 className="container row mb-3">Time Table</h2>
+            { timetable ? 
             <table class="table border border-secondary table-hover table-bordered">
                 <thead>
                     <tr>
@@ -165,6 +169,7 @@ export default function StudentSchedule() {
                     </tr>
                 </tbody>
             </table>
+             : <h5>You have not enrolled to any exam!!</h5> }
         </div>
     )
 }
