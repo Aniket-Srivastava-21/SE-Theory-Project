@@ -14,6 +14,7 @@ export const CoursePage = () => {
 
     let [errmsg, seterrmsg] = useState("");
     let [course, setCourse] = useState({});
+    let [course1, setCourse1] = useState({});
     let [isEnrolled, setEnroll] = useState(false);
     let [isValidDate, setDate] = useState(false);
 
@@ -39,6 +40,16 @@ export const CoursePage = () => {
             setDate(check <= from)
             console.log(res.data.result);
             if(res.data.auth){
+                let c1 = {
+                    Fees : res.data.result.Fees,
+                    desc : res.data.result.desc,
+                    exam : res.data.result.exam,
+                    mentor : res.data.result.mentor,
+                    slots : res.data.result.slots,
+                    subject : res.data.result.subject,
+                    _id : res.data.result._id,
+                }
+                setCourse1(c1);
                 setCourse(res.data.result);
                 let courses = location.state.user.courses;
                 courses.forEach(ele => {
@@ -66,7 +77,7 @@ export const CoursePage = () => {
                     <p className="fs-4">Fees: { course.Fees }</p>
                 <div className="text-end">
                 { isEnrolled ? (<Link to={{pathname : "/coursedashboard", state : { user : location.state.user, course : course }}} className="btn btn-outline-success btn-lg w-25" type="button">Go to Course</Link>) : 
-                (isValidDate ? (<Link to={{pathname : "/payment", state : { user : location.state.user, course : course }}} className="btn btn-outline-success btn-lg w-25" type="button">Enroll</Link>) : 
+                (isValidDate ? (<Link to={{pathname : "/payment", state : { user : location.state.user, course : course1 }}} className="btn btn-outline-success btn-lg w-25" type="button">Enroll</Link>) : 
                 (<button className="btn btn-outline-danger btn-lg w-25" disabled>Enroll</button>)) }
                 
                 </div>
