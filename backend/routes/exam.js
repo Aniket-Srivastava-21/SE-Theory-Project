@@ -4,7 +4,7 @@ import {addExam, getExams, getExamDetail, getTT, checkMentor } from "../controll
 const router = express.Router();
 
 router.post("/addexam", verifyJwt, addExam);
-router.get("/getExams", verifyJwt, getExams);
+router.get("/getExams", getExams);
 router.get("/getExamDetail", verifyJwt, getExamDetail);
 router.get("/getTT", verifyJwt, getTT);
 router.get("/checkMentor", verifyJwt, checkMentor);
