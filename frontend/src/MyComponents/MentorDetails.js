@@ -15,11 +15,12 @@ export default function MentorDetails() {
                         Email : { location.state.email }
                     </div>
                 </li>
+                { location.state.exam === '' ? <></> :  
                 <li>
                     <div className="nav-link text-black">
-                        Registerd Exam : { location.state.exam }
+                        Registerd Exam : {location.state.exam}
                     </div>
-                </li>
+                </li> }
                 
             </ul>
         </div>
