@@ -179,3 +179,26 @@ export let viewCourses = async (req,res) => {
         
     }
 }
+
+export let viewCoursesMentor = async (req,res)=>{
+    try {
+
+        let id = req.user;
+        User.findById(id,(err,user)=>{
+            if(err){
+                console.log(err);
+            }else{
+                Course.find({mentor : user.name}, (err,founds)=>{
+                    if(err){
+                        console.log(err);
+                    }else{
+                        return res.status(200).json({ auth:true, result : founds });
+                    }
+                })
+            }
+        })
+        
+    } catch (error) {
+        console.log(error);        
+    }
+}

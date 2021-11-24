@@ -20,6 +20,7 @@ import Upi from "./MyComponents/Upi"
 import ForgotPassword from './MyComponents/ForgotPassword';
 import MentorForm from './MyComponents/MentorForm';
 import MentorForm0 from './MyComponents/MentorForm0';
+import AddExam from "./MyComponents/AddExam";
 import TeacherDashboard from "./MyComponents/TeacherDashboard";
 import Feedbacks from "./MyComponents/Feedbacks";
 import { useState } from "react";
@@ -66,6 +67,9 @@ function App() {
         </Route>
         <Route exact path="/feedbacks">
         { isAuthenticated ? <Feedbacks /> : <Login/> } 
+        </Route>
+        <Route exact path="/addexam">
+        { isAuthenticated ? <AddExam /> : <Login/> } 
         </Route>
         <Route exact path="/forgotpassword">
           <ForgotPassword />

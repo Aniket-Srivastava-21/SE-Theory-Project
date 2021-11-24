@@ -1,5 +1,5 @@
 import express from "express";
-import { getRole, getUserData, getTransactions, viewPDF, viewCourses } from "../controllers/user.js";
+import { getRole, getUserData, getTransactions, viewPDF, viewCourses, viewCoursesMentor } from "../controllers/user.js";
 import { verifyJwt } from "../middleware/validateUser.js";
 const router = express.Router();
 
@@ -11,5 +11,6 @@ router.get("/getUserData", verifyJwt, getUserData);
 router.get("/getTransactions", verifyJwt, getTransactions);
 router.get("/viewPDF", verifyJwt, viewPDF);
 router.get("/viewCourses", verifyJwt, viewCourses);
+router.get("/viewCoursesMentor", verifyJwt, viewCoursesMentor);
 
 export default router;

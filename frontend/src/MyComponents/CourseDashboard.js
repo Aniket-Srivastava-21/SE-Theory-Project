@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import baseUrl from "../services/Baseurl";
+import Axios from "axios";
 
 function CourseDashboard() {
   // accept the data passed from the link
@@ -10,14 +11,42 @@ function CourseDashboard() {
   let [filledFeedback, setFilledFeedback] = useState(false);
   let [feedback, setFeedback] = useState("");
   let [rating, setRating] = useState(0);
+  let [exam2, setExam2] = useState({});
+  let [isValidDate, setDate] = useState(false);
 
   useEffect(() => {
     console.log(location.state);
     getDetails();
+    getExamDetails();
   }, []);
 
+  function getExamDetails(){
+    let url = baseUrl + "exam/getExamDetail?exam="+ location.state.course.exam;
+    Axios.get(url, {
+      headers : {
+        "x-access-token" : localStorage.getItem('token')
+      }
+    }).then((res)=>{
+      console.log(res);
+      setExam2(res.data.result);
+      var dateFrom = res.data.result.startDate;
+      var dateTo = res.data.result.endDate;
+      var today = new Date();
+      var dateCheck = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+
+      var d1 = dateFrom.split("-");
+      var d2 = dateTo.split("-");
+      var c = dateCheck.split("-");
+
+      var from = new Date(d1[2], parseInt(d1[1])-1, d1[0]);  // -1 because months are from 0 to 11
+      var to   = new Date(d2[2], parseInt(d2[1])-1, d2[0]);
+      var check = new Date(c[2], parseInt(c[1])-1, c[0]);
+      setDate(check >= from && check <= to)
+    })
+  }
+
   function getDetails() {
-    let url = baseUrl + "/";
+    
     setCurriculum(location.state.course.Curriculum);
     setResources(location.state.course.Resources);
     let username = localStorage.getItem("name");
@@ -35,6 +64,36 @@ function CourseDashboard() {
         }
       })
     }
+  }
+
+  const b64toBlob = (b64Data, contentType='', sliceSize=512) => {
+    const byteCharacters = atob(b64Data);
+    const byteArrays = [];
+  
+    for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+      const slice = byteCharacters.slice(offset, offset + sliceSize);
+  
+      const byteNumbers = new Array(slice.length);
+      for (let i = 0; i < slice.length; i++) {
+        byteNumbers[i] = slice.charCodeAt(i);
+      }
+  
+      const byteArray = new Uint8Array(byteNumbers);
+      byteArrays.push(byteArray);
+    }
+  
+    const blob = new Blob(byteArrays, {type: contentType});
+    return blob;
+  }
+
+  function viewPlan(){
+      let fileUrl = `data:application/pdf;base64,${location.state.course.coursePlan[0].data}`;
+      // const file = new Blob([fileUrl], { type: "application/pdf" });
+      // const fileURL = URL.createObjectURL(file);
+      // window.open(fileURL);
+      const blob = b64toBlob(location.state.course.coursePlan[0].data, 'application/pdf');
+      const blobUrl = URL.createObjectURL(blob);
+      window.open(blobUrl);
   }
 
   return (
@@ -59,19 +118,25 @@ function CourseDashboard() {
               <i className="bi bi-person-fill"></i>
               <strong>Mentor: </strong> {location.state.course.mentor}
             </div>
+            <div className="my-1">
+              <strong>Course Plan: </strong>
+               <button onClick={viewPlan} className="btn btn-dark">Download</button>
+            </div>
           </div>
           <div className="d-flex justify-content-between ">
             <div>
               {" "}
-              <i className="bi bi-calendar"></i> <strong>Start Date: </strong>{" "}
-              20/10/2021
+              <i className="bi bi-calendar"></i> <strong>Start Date: </strong>{ exam2.startDate }
+              
             </div>
             <div>
               {" "}
               <i className="bi bi-calendar"></i> <strong>End Date: </strong>
-              20/10/2022
+              { exam2.endDate }
             </div>
           </div>
+
+          {/* { isValidDate ? ():() } */}
 
           <div className=" border border-dark p-2 my-2">
             <ul className="nav nav-pills mb-3" id="myTab" role="tablist">
@@ -105,6 +170,7 @@ function CourseDashboard() {
               </li>
             </ul>
             <hr />
+            { isValidDate ?  
             <div className="tab-content" id="myTabContent">
               <div
                 className="tab-pane fade show active"
@@ -180,7 +246,7 @@ function CourseDashboard() {
                                 ></iframe>
                                 <br />
                                 <div>
-                                  <a
+                                  {/* <a
                                     href="../../public/Assets/kinetic_Energy.pdf"
                                     download
                                     rel="noopener noreferrer"
@@ -190,7 +256,7 @@ function CourseDashboard() {
                                       {" "}
                                       Download Material
                                     </i>
-                                  </a>
+                                  </a> */}
                                 </div>
                                 <hr />
                               </li>
@@ -203,9 +269,10 @@ function CourseDashboard() {
                 </div>
               </div>
             </div>
+            : <h3> Course is hidden!! </h3>}
           </div>
           {
-            filledFeedback == true ? (
+            isValidDate ? (filledFeedback == true ? (
               <div className="accordion" id="accordionExample">
                 <div className="accordion-item">
                   <h2 className="accordion-header" id="headingOne">
@@ -227,7 +294,8 @@ function CourseDashboard() {
                   Submit Feedback
                 </button>
               </Link>
-            )
+            ) ) : (<></>)
+            
           }
         </div>
         <div className="col-3">

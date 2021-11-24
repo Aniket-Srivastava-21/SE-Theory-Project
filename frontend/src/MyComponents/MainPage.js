@@ -12,9 +12,11 @@ export const MainPage = (props) => {
     useEffect(()=>{
         if(token !== null)
         getUserData();
+        getExams();
     },[])
 
     let [exam, setExam] = useState("");
+    let [allExams, setAllExams] = useState([]);
     let [user, setUser] = useState({});
     
     function getUserData(){
@@ -27,6 +29,18 @@ export const MainPage = (props) => {
             console.log(res);
             setUser(res.data.result);
             setExam(res.data.result.exam);
+        })
+    }
+
+    function getExams(){
+        let url = baseUrl + 'exam/getExams';
+        Axios.get(url,{
+            headers : {
+                "x-access-token": localStorage.getItem('token')
+            }
+        }).then((res)=>{
+            console.log(res);
+            setAllExams(res.data.result);
         })
     }
 
@@ -62,8 +76,11 @@ export const MainPage = (props) => {
             <div className="container">
             <hr/>
             <p className="pt-5 text-center display-1" >EXAMS</p>
+            { user.role === 'Admin' ? <Link to="addexam" className="btn btn-primary">Add Exams</Link> : <></>}
+            
             <div className="row justify-content-center">
-                <div className="card col-5 my-5 mx-4 px-0">
+
+                {/* <div className="card col-5 my-5 mx-4 px-0">
                 <img src="/assets/images/mains.jpg" className="card-img-top" height="300px" alt="mains"/>
                 <div className="card-body">
                     <h5 className="card-title">Exam Name</h5>
@@ -72,8 +89,22 @@ export const MainPage = (props) => {
                     <Link to="#" ><button className="btn btn-primary" disabled>Go to Exam</button></Link>}
                    
                 </div>
-                </div>
-                <div className="card col-5 my-5 mx-4 px-0">
+                </div> */}
+                { allExams.map((exam1)=>{
+                    let url = "/assets/images/"+exam1.alt+".jpg"
+                    return (<div className="card col-5 my-5 mx-4 px-0">
+                    <img src={url} className="card-img-top" height="300px" alt="mains"/>
+                    <div className="card-body">
+                        <h5 className="card-title">{exam1.name}</h5>
+                        <p className="card-text">{exam1.desc }</p>
+                        { (exam === "" || exam === exam1.alt) ?   <Link to={{pathname : "/exam", state : { user : user, exam : exam1.alt, exam1 : exam1 }}} className="btn btn-primary">Go to Exam</Link> : 
+                        <Link to="#" ><button className="btn btn-primary" disabled>Go to Exam</button></Link>}
+                    
+                    </div>
+                    </div>)
+                }) }
+
+                {/* <div className="card col-5 my-5 mx-4 px-0">
                 <img src="/assets/images/advanced.jpg" className="card-img-top" height="300px" alt="advanced"/>
                 <div className="card-body">
                     <h5 className="card-title">Exam Name</h5>
@@ -82,6 +113,7 @@ export const MainPage = (props) => {
                     <Link to="#" ><button className="btn btn-primary" disabled>Go to Exam</button></Link>}
                 </div>
                 </div>
+
                 <div className="card col-5 my-5 mx-4 px-0">
                 <img src="/assets/images/gate.jpeg" className="card-img-top" height="300px" alt="gate"/>
                 <div className="card-body">
@@ -91,6 +123,7 @@ export const MainPage = (props) => {
                     <Link to="#" ><button className="btn btn-primary" disabled>Go to Exam</button></Link>}
                 </div>
                 </div>
+
                 <div className="card col-5 my-5 mx-4 px-0">
                 <img src="/assets/images/neet.jpeg" className="card-img-top" height="300px" alt="neet"/>
                 <div className="card-body">
@@ -99,7 +132,7 @@ export const MainPage = (props) => {
                     { (exam === "" || exam === "neet") ?   <Link to={{pathname : "/exam", state : { user : user, exam : "neet" }}} className="btn btn-primary" onClick = {(e) => {props.setExam("neet")}} >Go to Exam</Link> : 
                     <Link to="#" ><button className="btn btn-primary" disabled>Go to Exam</button></Link>}
                 </div>
-                </div>
+                </div> */}
             </div>
             </div>
         </div>

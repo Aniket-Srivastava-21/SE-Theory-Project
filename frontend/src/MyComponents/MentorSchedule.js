@@ -1,69 +1,131 @@
-import Axios from 'axios'
-import React, { useState, useEffect } from 'react'
-import baseUrl from '../services/Baseurl'
+import Axios from 'axios';
+import React, { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom';
+import baseUrl from '../services/Baseurl';
 
-export default function MentorSchedule(props) {
+export default function MentorSchedule() {
 
-    useEffect(() => {
-        getTimetableFromDB();
-    }, [],
-    );
-    const [data, setData] = useState({})
-    const [monday, setmonday] = useState(["", "", "", "", "", ""])
-    const [tuesday, settuesday] = useState(["", "", "", "", "", ""])
-    const [wednesday, setwednesday] = useState(["", "", "", "", "", ""])
-    const [thursday, setthursday] = useState(["", "", "", "", "", ""])
-    const [friday, setfriday] = useState(["", "", "", "", "", ""])
-
-    var Data;
-    var url = baseUrl + "mentor/gettimetable";
-    console.log(props.exam);
-
-    function getTimetableFromDB() {
-        Axios.post(url, {exam: props.exam}, {
-            headers: {
-                "x-access-token": localStorage.getItem("token"),
-            }
-        })
-        .then((res) => {
-            console.log(res.data.result);
-            Data = res.data.result;
-            console.log(Data);
-            setData(Data);
-            console.log(data);
-            for(var i=0; i<Data.monday.length; i++) {
-                monday[Data.monday[i].slot] = Data.monday[i].course;
-                setmonday(monday);
-            }
-            for(var i=0; i<Data.tuesday.length; i++) {
-                tuesday[Data.tuesday[i].slot] = Data.tuesday[i].course;
-                settuesday(tuesday);
-            }
-            for(var i=0; i<Data.wednesday.length; i++) {
-                wednesday[Data.wednesday[i].slot] = Data.wednesday[i].course;
-                setwednesday(wednesday);
-            }
-            for(var i=0; i<Data.thursday.length; i++) {
-                thursday[Data.thursday[i].slot] = Data.thursday[i].course;
-                setthursday(thursday);
-            }
-            for(var i=0; i<Data.friday.length; i++) {
-                friday[Data.friday[i].slot] = Data.friday[i].course;
-                setfriday(friday);
-            }
-        })
+    useEffect(()=>{
+        console.log(location.state);
+        if(firstTime){
+            getTimeTable();
+            getUserCourses();
+        }
+    })
+    let location = useLocation();
+    let [firstTime, setFirstTime] = useState(true);
+    let [timetable, setTT] = useState({});
+    let [myCourses, setCourses] = useState([]);
+    const [flag, setFlag] = useState(false);
+    function getTimeTable(){
+        setFirstTime(false);
+        let url1 = baseUrl + "exam/getTT?exam="+location.state.exam;
+                Axios.get(url1,{
+                    headers : {
+                        "x-access-token" : localStorage.getItem('token')
+                    }
+                }).then((res1)=>{
+                    console.log(res1.data.result);     
+                    setTT(res1.data.result); 
+                    setFlag(true);              
+                })
     }
-    
+
+    function getUserCourses(){
+        let url = baseUrl + 'profile/viewCoursesMentor';
+        Axios.get(url, {
+                headers: {
+                    "x-access-token": localStorage.getItem("token"),
+                }
+            })
+            .then((res)=>{
+                console.log(res);    
+                setCourses(res.data.result);           
+            })
+    }
+
+    function checkDay(day, slot){
+        let f = false;
+        let subject = '';
+        if(flag){            
+            if(day === "monday"){ 
+                timetable.monday.forEach(ele => {
+                    if(ele.slot == slot){
+                        myCourses.forEach((course1)=>{
+                            if(course1.subject == ele.course){
+                                f = true;
+                                subject = ele.course;
+                            }
+                        })
+                    }
+                });
+                if(f==true)
+                return subject;
+            }if(day === 'tuesday'){
+                timetable.tuesday.forEach(ele => {
+                    if(ele.slot == slot){
+                        myCourses.forEach((course1)=>{
+                            if(course1.subject == ele.course){
+                                f = true;
+                                subject = ele.course;
+                            }
+                        })
+                    }
+                });
+                if(f==true)
+                return subject;
+            }if(day === 'wednesday'){
+                timetable.wednesday.forEach(ele => {
+                    if(ele.slot == slot){
+                        myCourses.forEach((course1)=>{
+                            if(course1.subject == ele.course){
+                                f = true;
+                                subject = ele.course;
+                            }
+                        })
+                    }
+                });
+                if(f==true)
+                return subject;
+            }if(day === 'thursday'){
+                timetable.thursday.forEach(ele => {
+                    if(ele.slot == slot){
+                        myCourses.forEach((course1)=>{
+                            if(course1.subject == ele.course){
+                                f = true;
+                                subject = ele.course;
+                            }
+                        })
+                    }
+                });
+                if(f==true)
+                return subject;
+            }if(day === 'friday'){
+                timetable.friday.forEach(ele => {
+                    if(ele.slot == slot){
+                        myCourses.forEach((course1)=>{
+                            if(course1.subject== ele.course){
+                                f = true;
+                                subject = ele.course;
+                            }
+                        })
+                    }
+                });
+                if(f==true)
+                return subject;
+            }
+        }else{
+            return subject;
+        }       
+        
+        return subject;
+    }
+
     return (
         <div className="container rounded mt-5 border bg-light border-dark py-3">
-        <h2 className="container row mb-3">Time Table</h2>
-        <table class="table border border-secondary table-hover table-bordered">
-            <thead>
-                {console.log(monday)}
-                {console.log(tuesday)}
-                {console.log(wednesday)}
-                {console.log(thursday)}
-                {console.log(friday)}
+            <h2 className="container row mb-3">Time Table</h2>
+            <table class="table border border-secondary table-hover table-bordered">
+                <thead>
                     <tr>
                         <th scope="col">Day/Time</th>
                         <th scope="col">7:00 - 9:00</th>
@@ -74,45 +136,46 @@ export default function MentorSchedule(props) {
                     </tr>
                 </thead>
                 <tbody>
+                
                     <tr>
                         <th scope="row">Monday</th>
-                        {monday[1] === "" ? <td> </td> : <td>{monday[1]}</td>}
-                        {monday[2] === "" ? <td> </td> : <td>{monday[2]}</td>}
-                        {monday[3] === "" ? <td>{"bye"}</td> : <td>{"hello1"}</td>}
-                        {monday[4] === "" ? <td> </td> : <td>{console.log(monday[4])} {monday[4]}</td>}
-                        {monday[5] === "" ? <td> </td> : <td>{monday[5]}</td>} 
+                        <td>{checkDay("monday",1) }</td>
+                        <td>{checkDay("monday",2) }</td>
+                        <td>{checkDay("monday",3) }</td>
+                        <td>{checkDay("monday",4) }</td>
+                        <td>{checkDay("monday",5) }</td>
                     </tr>
                     <tr>
                         <th scope="row">Tuesday</th>
-                        {tuesday[1] === "" ? <td> </td> : <td>{tuesday[1]}</td>}
-                        {tuesday[2] === "" ? <td> </td> : <td>{tuesday[2]}</td>}
-                        {tuesday[3] === "" ? <td> </td> : <td>{tuesday[3]}</td>}
-                        {tuesday[4] === "" ? <td> </td> : <td>{tuesday[4]}</td>}
-                        {tuesday[5] === "" ? <td> </td> : <td>{tuesday[5]}</td>}
+                        <td>{checkDay("tuesday",1) }</td>
+                        <td>{checkDay("tuesday",2) }</td>
+                        <td>{checkDay("tuesday",3) }</td>
+                        <td>{checkDay("tuesday",4) }</td>
+                        <td>{checkDay("tuesday",5) }</td>
                     </tr>
                     <tr>
                         <th scope="row">Wednesday</th>
-                        {wednesday[1] === "" ? <td> </td> : <td>{wednesday[1]}</td>}
-                        {wednesday[2] === "" ? <td> </td> : <td>{wednesday[2]}</td>}
-                        {wednesday[3] === "" ? <td> </td> : <td>{wednesday[3]}</td>}
-                        {wednesday[4] === "" ? <td> </td> : <td>{wednesday[4]}</td>}
-                        {wednesday[5] === "" ? <td> </td> : <td>{wednesday[5]}</td>}
+                        <td>{checkDay("wednesday",1) }</td>
+                        <td>{checkDay("wednesday",2) }</td>
+                        <td>{checkDay("wednesday",3) }</td>
+                        <td>{checkDay("wednesday",4) }</td>
+                        <td>{checkDay("wednesday",5) }</td>
                     </tr>
                     <tr>
                         <th scope="row">Thursday</th>
-                        {thursday[1] === "" ? <td> </td> : <td>{thursday[1]}</td>}
-                        {thursday[2] === "" ? <td> </td> : <td>{thursday[2]}</td>}
-                        {thursday[3] === "" ? <td> </td> : <td>{thursday[3]}</td>}
-                        {thursday[4] === "" ? <td> </td> : <td>{thursday[4]}</td>}
-                        {thursday[5] === "" ? <td> </td> : <td>{thursday[5]}</td>}
+                        <td>{checkDay("thursday",1) }</td>
+                        <td>{checkDay("thursday",2) }</td>
+                        <td>{checkDay("thursday",3) }</td>
+                        <td>{checkDay("thursday",4) }</td>
+                        <td>{checkDay("thursday",5) }</td>
                     </tr>
                     <tr>
                         <th scope="row">Friday</th>
-                        {friday[1] === "" ? <td> </td> : <td>{friday[1]}</td>}
-                        {friday[2] === "" ? <td> </td> : <td>{friday[2]}</td>}
-                        {friday[3] === "" ? <td> </td> : <td>{friday[3]}</td>}
-                        {friday[4] === "" ? <td> </td> : <td>{friday[4]}</td>}
-                        {friday[5] === "" ? <td> </td> : <td>{friday[5]}</td>}
+                        <td>{checkDay("friday",1) }</td>
+                        <td>{checkDay("friday",2) }</td>
+                        <td>{checkDay("friday",3) }</td>
+                        <td>{checkDay("friday",4) }</td>
+                        <td>{checkDay("friday",5) }</td>
                     </tr>
                 </tbody>
             </table>

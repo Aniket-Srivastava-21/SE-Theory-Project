@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
 import baseUrl from "../services/Baseurl";
 import FeedbackCard from "./FeedbackCard";
 
 function TeacherDashboard() {
+  let location = useLocation();
   let [title, setTitle] = useState("");
   let [resource, setResource] = useState("");
   let [reference, setReference] = useState("");
@@ -13,27 +14,33 @@ function TeacherDashboard() {
   let [topics, setTopics] = useState("");
   let [feedbacks, setFeedbacks] = useState([]);
   let [course, setCourse] = useState({});
+  let [students, setStudents] = useState([]);
 
   useEffect(() => {
+    console.log(location.state);
     getCourseDetails();
+    getStudentList();
   }, []);
 
+  function getStudentList(){
+    let url = baseUrl + "courses/getStudentDetails?id="+ location.state.course._id;
+    axios.get(url, {
+      headers : {
+        "x-access-token": localStorage.getItem("token"),
+      }
+    }).then((res)=>{
+      console.log(res.data.result);
+      setStudents(res.data.result);
+    })
+
+
+  }
+
   function getCourseDetails() {
-    let url = baseUrl + "mentor/courseDetails?id=" + "6197387d3e1769db49617b05";
-    axios
-      .get(url, {
-        headers: {
-          "x-access-token": localStorage.getItem("token"),
-        },
-      })
-      .then((res) => {
-        console.log("response is:", res.data.result);
-        if (res.data.auth) {
-          setCourse(res.data.result);
-          setFeedbacks(res.data.result.Feedback);
-          // console.log("feedbacks are: ",feedbacks)
-        } else console.error(res.data.msg);
-      });
+    
+      setCourse(location.state.course);
+      setFeedbacks(location.state.course.Feedback);
+          
   }
 
 
@@ -42,7 +49,7 @@ function TeacherDashboard() {
     e.preventDefault();
     // req body
     let req = {
-      id: "6197387d3e1769db49617b05",
+      id: location.state.course._id,
       topic: title,
       discription: resource,
       reference: reference,
@@ -73,7 +80,7 @@ function TeacherDashboard() {
     e.preventDefault();
     // req body
     let req = {
-      id: "6197387d3e1769db49617b05",
+      id: location.state.course._id,
       unit: unit,
       weightes: weightes,
       topics: topics,
@@ -110,30 +117,30 @@ function TeacherDashboard() {
           <div className="d-flex flex-column justify-content-between py-2">
             <div>
               {" "}
-              <strong>Course Name: </strong>JEE Physics
+              <strong>Course Name: </strong>{ course.subject }
             </div>
             <div>
               <span>About: </span>{" "}
               <span className="text-primary">
-                This course covers all the topics of the jee exam in depth.
+                { location.state.course.desc }
               </span>
             </div>
             <div className="my-1">
               {" "}
               <i className="bi bi-person-fill"></i>
-              <strong>Teacher: </strong> Sam Curran
+              <strong>Teacher: </strong> { course.mentor }
             </div>
           </div>
           <div className="d-flex justify-content-between ">
             <div>
               {" "}
               <i className="bi bi-calendar"></i> <strong>Start Date: </strong>{" "}
-              20/10/2021
+              { location.state.exam1.startDate }
             </div>
             <div>
               {" "}
               <i className="bi bi-calendar"></i> <strong>End Date: </strong>
-              20/10/2022
+              { location.state.exam1.endDate }
             </div>
           </div>
 
@@ -191,7 +198,7 @@ function TeacherDashboard() {
                         type="text"
                         className="form-control"
                         id="exampleFormControlInput1"
-                        placeholder="Rotational Motion"
+                        placeholder="Topic name"
                         value={unit}
                         onChange={(e) => {
                           setUnit(e.target.value);
@@ -199,12 +206,12 @@ function TeacherDashboard() {
                       />
                     </div>
                     <div className="form-group">
-                      <label for="exampleFormControlInput1">Weightes</label>
+                      <label for="exampleFormControlInput1">Weightage</label>
                       <input
                         type="text"
                         className="form-control"
                         id="exampleFormControlInput1"
-                        placeholder="4%"
+                        placeholder="enter percentage"
                         value={weightes}
                         onChange={(e) => {
                           setWeightes(e.target.value);
@@ -218,7 +225,7 @@ function TeacherDashboard() {
                           className="form-control"
                           id="exampleFormControlTextarea1"
                           rows="6"
-                          placeholder="Centre of mass of a two-particle system, Centre of mass of a rigid body; Basic concepts of rotational motion; moment of a force, torque, angular momentum, conservation of angular momentum and its applications; moment of inertia, radius of gyration. Values of moments of inertia for simple geometrical objects, parallel and perpendicular axes theorems and their applications. Rigid body rotation, equations of rotational motion."
+                          
                           value={topics}
                           onChange={(e) => {
                             setTopics(e.target.value);
@@ -321,23 +328,14 @@ function TeacherDashboard() {
           >
             <div className="card-body">
               <h5 className="card-title">
-                <i className="bi bi-megaphone-fill"></i> Anouncement
+                <i className="bi bi-megaphone-fill"></i> Student List
               </h5>
               <hr />
-              <p className="card-text">no announcement</p>
-            </div>
-          </div>
-          <div
-            className="card my-3 shadow p-3 mb-5 bg-body rounded"
-            style={{ width: "18rem;" }}
-          >
-            <div className="card-body">
-              <h5 className="card-title">
-                {" "}
-                <i className="bi bi-calendar-event-fill"></i> Upcoming
-              </h5>
-              <hr />
-              <p className="card-text">no events</p>
+              <ul>
+              { students.map((user1)=>{
+                return <li> {user1.name} </li>
+              }) }
+              </ul>
             </div>
           </div>
         </div>

@@ -90,3 +90,62 @@ export let generatePDF = async (req,res) => {
         console.log(error);        
     }
 }
+
+export let getStudentDetails = async (req,res) =>{ 
+    try {
+        
+        let id = req.query.id;
+        Course.findById(id,(err,found)=>{
+            if(err){
+                console.log(err);
+            }else{
+                User.find({}).where('_id').in(found.studentList).exec((err, records) => {
+                    if(err){
+                        console.log(err);
+                    }else{
+                        console.log(records);
+                        return res.status(201).json({auth:true, result: records});
+                    }
+                });
+            }
+        })
+        
+
+    } catch (error) {
+        console.log(error);
+        
+    }
+}
+
+export let addCourse = async (req,res) =>{
+    try {
+        
+        console.log(req.body);
+        console.log(req.files);
+        let id = req.user;
+        User.findById(id, (err,user)=>{
+            if(err){
+                console.log(err);
+            }else{
+                user.exam = req.body.exam;
+                user.save();
+                let course = new Course({
+                    exam : req.body.exam,
+                    subject : req.body.subject,
+                    mentor : req.body.mentor,
+                    desc : req.body.desc,
+                    coursePlan : req.files.file,
+                    Fees : req.body.fees,
+                    slots : req.body.slots,
+                });
+                course.save();
+                return res.status(200).json({auth: true, result : course});
+            }
+        })
+        
+
+    } catch (error) {
+        console.log(error);
+        
+    }
+}

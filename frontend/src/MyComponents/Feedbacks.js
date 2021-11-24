@@ -19,7 +19,7 @@ function Feedbacks() {
             <p className="bg-danger p-2 mb-2 text-center text-white fs-2">Feedbacks</p>
             {
               <div className="d-md-flex  justify-content-evenly flex-wrap align-items-center ">
-                    {
+                    { 
                     feedbacks.map(function (feedback) {
                         return (
                             <FeedbackCard feedback={feedback}/>
