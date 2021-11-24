@@ -91,9 +91,9 @@ export const MainPage = (props) => {
                 </div>
                 </div> */}
                 { allExams.map((exam1)=>{
-                    
+                    let url = "/assets/images/"+exam1.alt+".jpg"
                     return (<div className="card col-5 my-5 mx-4 px-0">
-                    <img src="/assets/images/mains.jpg" className="card-img-top" height="300px" alt="mains"/>
+                    <img src={url} className="card-img-top" height="300px" alt="mains"/>
                     <div className="card-body">
                         <h5 className="card-title">{exam1.name}</h5>
                         <p className="card-text">{exam1.desc }</p>
@@ -104,7 +104,7 @@ export const MainPage = (props) => {
                     </div>)
                 }) }
 
-                <div className="card col-5 my-5 mx-4 px-0">
+                {/* <div className="card col-5 my-5 mx-4 px-0">
                 <img src="/assets/images/advanced.jpg" className="card-img-top" height="300px" alt="advanced"/>
                 <div className="card-body">
                     <h5 className="card-title">Exam Name</h5>
@@ -132,7 +132,7 @@ export const MainPage = (props) => {
                     { (exam === "" || exam === "neet") ?   <Link to={{pathname : "/exam", state : { user : user, exam : "neet" }}} className="btn btn-primary" onClick = {(e) => {props.setExam("neet")}} >Go to Exam</Link> : 
                     <Link to="#" ><button className="btn btn-primary" disabled>Go to Exam</button></Link>}
                 </div>
-                </div>
+                </div> */}
             </div>
             </div>
         </div>
