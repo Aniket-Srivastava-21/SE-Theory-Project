@@ -5,7 +5,7 @@ import baseUrl from '../services/Baseurl.js'
 
 
 
-export const MainPage = (props) => {
+export const MainPage = () => {
 
     let token = localStorage.getItem('token');
 

@@ -15,7 +15,7 @@ export default function mentordashboard() {
                     </div>
                     <div className="col-9">
                         <MentorCourses />
-                        <MentorSchedule exam = {props.exam} />
+                        <MentorSchedule />
                     </div>
                 </div>
             </div>
