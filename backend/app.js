@@ -2,6 +2,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import express from "express"
 import cors from "cors"
+import ejs from "ejs";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import session from "express-session";

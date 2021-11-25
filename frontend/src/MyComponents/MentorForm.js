@@ -77,6 +77,9 @@ export default function MentorForm(props) {
     }
 
     function checkDay(day, slot){
+        if(!timeTable){
+            return false;
+        }
         if(flag){
             let f = false;
             if(day === "monday"){ 
