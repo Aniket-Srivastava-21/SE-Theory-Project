@@ -64,11 +64,11 @@ export default function MentorForm0() {
     return (
         <div>
             <div className="container">
-            <div className="text-center mt-5 display-3">{ location.state.subject }</div>
-            <div className="row justify-content-center">
+            <div className="text-center mt-5 display-3">{location.state.exam} - { location.state.subject }</div>
+            <div className="">
              <form onSubmit={submitForm}>
-                <div className="h-100 col-8 px-5 py-3 border my-4 bg-light outline rounded-3">
-                    <p className="fs-2 text-center">Create Course</p>
+                <div className="text-center my-5 container w-75 p-5 ps-0 pt-3 rounded border border-dark shadow">
+                    <p className="fs-1 text-center">Create Course</p>
                     <div className="form-floating mb-3 row mt-4">
                         <div className=" col-5 fs-4">Course Description</div>
                         <div className="col-7">
